@@ -1,0 +1,136 @@
+/* 햄버거 버튼과 메뉴 */
+/* Google Web Font */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap");
+
+/* Fontawesome 4.7 */
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/front/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/front/font/Gong/Gothic/Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/front/font/HS두꺼비체.ttf");
+}
+
+/* 수업 등록 */
+.registration-container {
+  text-align: center;
+}
+.title {
+  font-size: 50px;
+  font-family: "gongli";
+}
+.classBox {
+  display: inline-block;
+  width: 1000px;
+  background-color: #d9d9d9;
+  height: 600px;
+  border-radius: 3px;
+  font-family: "nanum";
+  font-size: 20px;
+}
+.formBox {
+  position: relative;
+  top: 82px;
+}
+#id {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  position: relative;
+  left: 8px;
+}
+#pw {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  position: relative;
+  left: 2px;
+}
+#college,
+#name,
+#department,
+#sNum {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
+#pNum {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
+#idLabel,
+#pwLabel,
+#collegeLabel,
+#nameLabel,
+#departmentLabel,
+#sNumLabel,
+#pNumLabel {
+  margin-right: 22px;
+}
+#registrationBtn {
+  margin-top: 28px;
+  padding: 16px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+#signupBtn {
+  margin-top: 28px;
+  padding: 110px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.container {
+  text-align: center;
+}
+.classDiv {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+}
+.title {
+  font-size: 37px;
+  font-family: "gongli";
+}
+#classBtn {
+  display: inline-block;
+  background-color: #d9d9d9;
+  width: 300px;
+  height: 250px;
+  font-size: 47px;
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  top: 100px;
+  margin-bottom: 80px;
+}

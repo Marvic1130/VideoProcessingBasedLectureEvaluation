@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/front/dataPage.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <title>class</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">I see you 강의 평가 시스템</h1>
+    </div>
+    <div class="body-container">
+      <div class="contentBox">
+        <div class="positionBox">
+          <div class="labelBoxLine">
+            <label for="realDataLine" id="realData">실제 집중도</label><br />
+            <label for="lectureDataLine" id="lectureData">강의평가 집중도</label
+            ><br />
+          </div>
+
+          <canvas
+            id="canvas"
+            style="
+              display: inline-block;
+              width: 450px;
+              height: 350px;
+              position: relative;
+              right: 45px;
+            "
+          ></canvas
+          ><br />
+          <div class="labelBoxStick">
+            <label for="realDataStick" id="realDataStick">실제 집중도</label>
+            <br />
+            <label for="lectureDataStick" id="lectureDataStick"
+              >강의평가 집중도</label
+            ><br />
+          </div>
+          <div class="progress-bar-real">
+            <div class="progressReal"></div>
+          </div>
+          <div class="progress-bar-lecture">
+            <div class="progressLecture"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/front/dataPage.js"></script>
+</html>

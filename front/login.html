@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/front/login.css" />
+    <title>login</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">I see you 강의 평가 시스템</h1>
+      <form method="post" action="/" id="form">
+        <div class="login-box">
+          <label for="id">ID</label>
+          <input id="id" name="id" type="text" placeholder="아이디" /> <br />
+          <label for="password">PW</label>
+          <input
+            id="pw"
+            name="pw"
+            type="password"
+            placeholder="비밀번호"
+          /><br />
+          <button id="bt">로그인</button>
+        </div>
+      </form>
+      <a href="/selectSignup"><button id="signupBt">회원가입</button></a>
+    </div>
+  </body>
+  <script src="/front/login.js"></script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/front/classStudent.css" />
+    <title>class</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 최상위 div -->
+      <!-- 햄버거 메뉴 -->
+      <input type="checkbox" id="trigger" />
+      <label for="trigger">
+        <!-- 햄버거 세줄 표현 -->
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <!-- 클릭시 나타날 사이드바 -->
+      <div class="sidebar">
+        <p id="menu-title">menu</p>
+        <p><a>about</a></p>
+        <p><a>guide</a></p>
+        <p><a>tech</a></p>
+      </div>
+      <h1 class="title">I see you 강의 평가 시스템</h1>
+      <div class="classDiv">
+        <button id="classBtn">+</button>
+      </div>
+    </div>
+
+    <!-- 수업 선택 -->
+    <div class="select-container">
+      <div class="classBox">
+        <div class="formBox">
+          <!-- <form method="POST"> -->
+          <h1 class="classSelectTitle">수업선택</h1>
+          <label for="classSelect">수업명</label>
+          <select name="classSelect" id="classSelect">
+            <option value="class1">class1</option>
+            <option value="class2">class2</option>
+            <option value="class3">class3</option></select
+          ><br />
+          <label for="name" id="nameLabel">이름</label>
+          <input type="text" id="name" /><br />
+          <label for="studentNumber" id="studentNumLabel">학번</label>
+          <input type="text" id="studentNumber" /><br>
+          <button id="finishBtn">등록완료</button>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/front/classStudent.js"></script>
+</html>

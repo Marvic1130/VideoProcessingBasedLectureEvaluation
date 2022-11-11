@@ -1,0 +1,78 @@
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/front/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/front/font/Gong\ Gothic\ Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/front/font/HS두꺼비체.ttf");
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.container {
+  text-align: center;
+}
+.title {
+  position: relative;
+  top: 223px;
+  font-size: 28px;
+  font-family: "gongli";
+}
+.login-box {
+  text-align: center;
+  position: relative;
+  top: 240px;
+  font-family: "nanum";
+}
+.login-box label {
+  font-size: 25px;
+  position: relative;
+  top: 4px;
+}
+#id {
+  width: 188px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 31px;
+  margin-bottom: 17px;
+}
+#pw {
+  width: 188px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 15px;
+}
+#bt {
+  margin-top: 28px;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 3px;
+  background-color: #325d66;
+  font-size: 18px;
+  font-family: "nanum";
+}
+#signupBt {
+  margin-top: 28px;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 3px;
+  background-color: #325d66;
+  font-size: 18px;
+  font-family: "nanum";
+  position: relative;
+  top: 225px;
+}

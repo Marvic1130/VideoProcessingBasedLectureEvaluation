@@ -1,0 +1,199 @@
+/* 햄버거 버튼과 메뉴 */
+/* Google Web Font */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap");
+
+/* Fontawesome 4.7 */
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/front/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/front/font/Gong/Gothic/Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/front/font/HS두꺼비체.ttf");
+}
+
+/* input 중에 id가 trigger인 항목에 대한 css */
+input[id="trigger"] {
+  display: none;
+}
+
+/* label 중에 for가 trigger인 항목 */
+label[for="trigger"] {
+  width: 30px;
+  height: 20px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+/* label 중에 for가 trigger인 항목 안의 span */
+label[for="trigger"] span {
+  display: block;
+  height: 2px;
+  background-color: #000;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+/* label[for=trigger] > span의 n번째 요소 */
+/* 세줄 위치 지정 */
+label[for="trigger"] span:nth-child(1) {
+  top: 0;
+}
+
+label[for="trigger"] span:nth-child(2) {
+  top: 50%;
+}
+
+label[for="trigger"] span:nth-child(3) {
+  top: 100%;
+}
+
+/* check시 변하는 label[for=trigger] > span의 n번째 요소  */
+/* 세줄 클릭시 X로 변환 */
+input[id="trigger"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+input[id="trigger"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+
+input[id="trigger"]:checked + label span:nth-child(3) {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(133, 131, 131);
+  position: fixed;
+  top: 0;
+  left: 0;
+  left: -250px;
+  transition: 0.3s;
+  z-index: 1;
+}
+#menu-title {
+  font-size: 29px;
+}
+
+/* input[id=trigger]가 체크되었을 때 사이드바가 나오는 일반 형제 선택자 */
+/* input trigger가 checked 됬을때 뒤에 오는(바로 뒤 아니여도 됨) .sidebar에 적용 */
+input[id="trigger"]:checked ~ .sidebar {
+  left: 0;
+}
+
+/* check시 같이 밀려나가는 CSS 햄버거 메뉴 인접 형제 선택자 */
+/* input trigger가 checked 됬을때 바로 뒤에 오는 label[for="trigger"]에 적용 */
+input[id="trigger"]:checked + label[for="trigger"] {
+  left: 210px;
+  transition: 0.3s;
+}
+
+/* 수업 등록 */
+.registration-container {
+  text-align: center;
+  display: none;
+}
+.title {
+  font-size: 50px;
+  font-family: "gongli";
+}
+.classBox {
+  display: inline-block;
+  width: 1000px;
+  background-color: #d9d9d9;
+  height: 600px;
+  border-radius: 3px;
+  font-family: "nanum";
+  font-size: 20px;
+}
+.formBox {
+  position: relative;
+  top: 82px;
+}
+#classTitle,
+#classTime,
+#department,
+#place,
+#grades,
+#numOfPeople {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
+#titleLabel {
+  margin-right: 22px;
+}
+#departmentLabel {
+  margin-right: 40px;
+}
+#placeLabel {
+  margin-right: 40px;
+}
+#gradesLabel {
+  margin-right: 40px;
+}
+#peopleLabel {
+  margin-right: 22px;
+}
+#registrationBtn {
+  margin-top: 28px;
+  padding: 16px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.container {
+  text-align: center;
+}
+.classDiv {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+}
+.title {
+  font-size: 28px;
+  position: relative;
+  bottom: 30px;
+  font-family: "gongli";
+}
+#classBtn {
+  display: inline-block;
+  background-color: #d9d9d9;
+  width: 300px;
+  height: 250px;
+  font-size: 47px;
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  top: 100px;
+  margin-bottom: 80px;
+}

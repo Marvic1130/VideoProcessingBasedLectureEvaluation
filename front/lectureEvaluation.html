@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/front/lectureEvaluation.css" />
+    <title>class</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">I see you 강의 평가 시스템</h1>
+    </div>
+
+    <!-- 수업 등록 -->
+    <div class="registration-container">
+      <div class="classBox">
+        <h1 class="title">강의평가</h1>
+        <div class="formBox">
+          <!-- <form method="POST"> -->
+          <label for="classTitle" id="titleLabel"
+            >1. 강의에 얼마나 집중 했나요?</label
+          ><br />
+          <!-- 전체 영역 -->
+          <div class="progress1">
+            <!-- 프로그래스 바 -->
+            <div class="state1"><span id="percentage1"></span></div>
+          </div>
+
+          
+          <label for="classTime" id="timeLabel">
+            2. 강의에서 얻을 수 있는 점이 있었나요?</label
+          ><br />
+          <!-- 전체 영역 -->
+          <div class="progress2">
+            <!-- 프로그래스 바 -->
+            <div class="state2"><span id="percentage2"></span></div>
+          </div>
+
+          <label for="department" id="departmentLabel">
+            3. 강의가 만족스러웠나요?</label
+          ><br />
+          <!-- 전체 영역 -->
+          <div class="progress3">
+            <!-- 프로그래스 바 -->
+            <div class="state3"><span id="percentage3"></span></div>
+          </div>
+
+          <button id="registrationBtn">제출하기</button>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/front/lectureEvaluation.js"></script>
+</html>

@@ -1,0 +1,109 @@
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/front/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/front/font/Gong/Gothic/Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/front/font/HS두꺼비체.ttf");
+}
+
+/* 수업 등록 */
+.registration-container {
+  text-align: center;
+}
+
+.classBox {
+  display: inline-block;
+  width: 1000px;
+  background-color: #d9d9d9;
+  height: 600px;
+  border-radius: 3px;
+  font-family: "nanum";
+  font-size: 20px;
+}
+.formBox {
+  position: relative;
+  top: 22px;
+}
+#titleLabel {
+  float: left;
+  margin-left: 130px;
+  margin-bottom: 32px;
+}
+#departmentLabel {
+  float: left;
+  margin-left: 130px;
+  margin-bottom: 32px;
+  margin-top: 40px;
+}
+#timeLabel {
+  float: left;
+  margin-left: 130px;
+  margin-bottom: 32px;
+  margin-top: 40px;
+}
+
+#registrationBtn {
+  margin-top: 28px;
+  padding: 14px 96px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.container {
+  text-align: center;
+}
+.classDiv {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+}
+.title {
+  font-size: 28px;
+  font-family: "gongli";
+}
+
+/* 프로그래스 바 */
+.progress1, .progress2, .progress3 {
+  width: 75%;
+  height: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  cursor: pointer;
+  border: 1px solid black;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.state1, .state2, .state3 {
+  width: 0;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #448593;
+}
+
+#percentage1, #percentage2, #percentage3 {
+  line-height: 50px;
+  vertical-align: middle;
+}
+

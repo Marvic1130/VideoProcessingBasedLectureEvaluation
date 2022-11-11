@@ -1,0 +1,51 @@
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/front/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/front/font/Gong/Gothic/Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/front/font/HS두꺼비체.ttf");
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.registration-container {
+  text-align: center;
+  line-height: 31;
+}
+.title {
+  text-align: center;
+  font-size: 37px;
+  font-family: "gongli";
+}
+#studentBtn {
+  margin-top: 28px;
+  margin-right: 145px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 40px;
+  width: 273px;
+  height: 250px;
+}
+#professorBtn {
+  margin-top: 28px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 40px;
+  width: 273px;
+  height: 250px;
+}
