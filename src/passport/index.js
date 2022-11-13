@@ -1,59 +1,27 @@
-// const passport = require("passport");
-// const { Strategy: LocalStrategy } = require("passport-local");
+const local = require("./localStrategy");
+const passport = require("passport");
+const Student = require("../models/Student");
 
-// //const { ExtractJwt, Strategy: JWTStrategy } = require("passport-jwt");
-// const bcrypt = require("bcrypt");
+module.exports = () => {
+  passport.serializeUser((user, done) => {
+    // router의 req.login 요청이 들어오면 실행된다.
+    // 역할: 서버 메모리를 아끼기 위해 많은 사용자 정보 중에서 필요한 부분만 메모리에 저장하도록함. (여기에서는 id)
+    // 서버쪽에 [{ id: 3, cookie: 'asvxzc' }] 저장, cookie는 프론트로 보냄
+    return done(null, user.id);
+  });
 
-// const Student = require("../models/Student");
-// //const professor = require("../models/Professor");
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const student = await Student.findOne({
+        // 프론트에서 cookie를 보내면, 서버는 메모리에서 cookie와 관련된 id를 찾은 뒤 DB에서 user 정보를 불러옴.
+        where: { id },
+      });
+      return done(null, student); // 불러온 user 정보는 req.user에 저장
+    } catch (e) {
+      console.error(e);
+      return done(e);
+    }
+  });
 
-// const passportConfig = { usernameField: "id", passwordField: "pw" };
-
-// const passportVerify = async (id, pw, done) => {
-//   try {
-//     const user = await Student.findOne({ where: { id } });
-//     if (!user) {
-//       done(null, false, { message: "존재하지 않는 사용자 입니다." });
-//       return;
-//     }
-
-//     const compareResult = await bcrypt.compare(pw, user.pw);
-
-//     if (compareResult) {
-//       done(null, user);
-//       return;
-//     }
-
-//     done(null, false, { reason: "올바르지 않은 비밀번호 입니다." });
-//   } catch (error) {
-//     console.error(error);
-//     done(error);
-//   }
-// };
-
-// // const JWTConfig = {
-// //   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
-// //   secretOrKey: "jwt-secret-key",
-// // };
-
-// // const JWTVerify = async (jwtPayload, done) => {
-// //   try {
-// //     // payload의 id값으로 유저의 데이터 조회
-// //     const user = await Student.findOne({ where: { id: jwtPayload.id } });
-// //     // 유저 데이터가 있다면 유저 데이터 객체 전송
-// //     if (user) {
-// //       done(null, user);
-// //       return;
-// //     }
-// //     // 유저 데이터가 없을 경우 에러 표시
-// //     done(null, false, { reason: "올바르지 않은 인증정보 입니다." });
-// //   } catch (error) {
-// //     console.error(error);
-// //     done(error);
-// //   }
-// // };
-
-// module.exports = () => {
-//   passport.use("local", new LocalStrategy(passportConfig, passportVerify));
-//   // passport.use("jwt", new JWTStrategy(JWTConfig, JWTVerify));
-// };
+  local();
+};

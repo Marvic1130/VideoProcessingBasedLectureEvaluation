@@ -1,19 +1,27 @@
 const bcrypt = require("bcrypt");
 const path = require("path");
-const Student = require("../models/Student");
-const Professor = require("../models/Professor");
-const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-//이름, 아이디, 패스워드, 소속대학, 학과, 학번
+const Student = require("../models/Student");
+const Professor = require("../models/Professor");
 
-module.exports.getLogin = async (req, res) => {
-  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
-};
+//이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.home = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/class.html"));
 };
-module.exports.studentJoin = async (req, res) => {
+
+module.exports.selectSignup = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/selectSignup.html")
+  );
+};
+
+module.exports.getSJoin = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/studentSignup.html")
+  );
+};
+module.exports.postSJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
   const encryption = bcrypt.hashSync(pw, 5);
 
@@ -27,7 +35,7 @@ module.exports.studentJoin = async (req, res) => {
       college,
       department,
     });
-    return res.redirect("/login");
+    return res.redirect("/");
   } catch (err) {
     //err 확인 코드
     console.log(err);
@@ -35,11 +43,12 @@ module.exports.studentJoin = async (req, res) => {
 };
 //이름, 아이디, 패스워드, 소속대학, 학과,사번
 
-module.exports.getLogin = async (req, res) => {
-  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
+module.exports.getPJoin = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/professorSignup.html")
+  );
 };
-
-module.exports.professorJoin = async (req, res) => {
+module.exports.postPJoin = async (req, res) => {
   const { id, pw, college, name, department, pNum } = req.body;
 
   const encryption = bcrypt.hashSync(pw, 5);
@@ -53,17 +62,36 @@ module.exports.professorJoin = async (req, res) => {
       college,
       department,
     });
-    return res.redirect("/login");
+    return res.redirect("/");
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports.postLogin = async (req, res) => {
-  passport.authenticate("local", { failureRedirect: "/" }),
-    function (req, res) {
+module.exports.getLogin = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
+};
+
+module.exports.postLogin = async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    // (err, user, info) 는 passport의 done(err, data, logicErr) 세 가지 인자
+    if (err) {
+      // 서버에 에러가 있는 경우
+      console.error(err);
+      next(err);
+    }
+    if (info) {
+      // 로직 상 에러가 있는 경우
+      return res.status(401).send(info.reason);
+    }
+    return req.login(user, (loginErr) => {
+      // req.login() 요청으로 passport.serializeUser() 실행
+      if (loginErr) {
+        return next(loginErr);
+      }
       return res.redirect("/main");
-    };
+    });
+  })(req, res, next);
 };
 
 module.exports.logout = async (req, res) => {

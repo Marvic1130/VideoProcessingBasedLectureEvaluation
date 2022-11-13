@@ -3,23 +3,25 @@ const passport = require("passport");
 const Student = require("./models/Student");
 const { Strategy: LocalStrategy } = require("passport-local");
 
-passport.use(
-  new LocalStrategy(function (username, password, done) {
-    console.log("hi");
-    Student.findOne({ id: username }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
-  })
-);
+module.exports.passport = (req, res) => {
+  passport.use(
+    new LocalStrategy(function (username, password, done) {
+      console.log("hi");
+      Student.findOne({ id: username }, function (err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false);
+        }
+        if (!user.verifyPassword(password)) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+    })
+  );
+};
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
