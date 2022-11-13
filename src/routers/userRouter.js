@@ -6,6 +6,8 @@ userRouter.get("/main", user.home);
 userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
+userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
+userRouter.get("/getClassStudent", user.getClassStudent);
 
 userRouter.route("/sJoin").post(user.postSJoin);
 userRouter.route("/pJoin").post(user.postPJoin);
