@@ -1,12 +1,13 @@
 //토큰 유효성 검사
 const passport = require("passport");
+const Student = require("./models/Student");
 const { Strategy: LocalStrategy } = require("passport-local");
 
-module.exports = () => {
+module.exports.passport = (req, res) => {
   passport.use(
     new LocalStrategy(function (username, password, done) {
       console.log("hi");
-      User.findOne({ username: username }, function (err, user) {
+      Student.findOne({ id: username }, function (err, user) {
         if (err) {
           return done(err);
         }
@@ -21,13 +22,14 @@ module.exports = () => {
     })
   );
 };
-// passport.serializeUser(function (user, done) {
-//   done(null, user.id);
-// });
 
-// passport.deserializeUser(function (id, done) {
-//   done(null, id);
-// });
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  done(null, id);
+});
 
 // const jwt = require("jsonwebtoken");
 // const authToken = (req, res, next) => {
