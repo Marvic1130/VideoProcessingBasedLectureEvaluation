@@ -1,30 +1,33 @@
 //토큰 유효성 검사
 const passport = require("passport");
 const { Strategy: LocalStrategy } = require("passport-local");
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "id",
-      passwordField: "pw",
-    },
-    function (username, password, done) {
-      let result = login(username, password);
 
-      if (result === -1)
-        return done(null, false, { message: "Incorrect username." });
-      else if (result === 0)
-        return done(null, false, { message: "Incorrect password." });
-      else return done(null, { id: username });
-    }
-  )
-);
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
+module.exports = () => {
+  passport.use(
+    new LocalStrategy(function (username, password, done) {
+      console.log("hi");
+      User.findOne({ username: username }, function (err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false);
+        }
+        if (!user.verifyPassword(password)) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+    })
+  );
+};
+// passport.serializeUser(function (user, done) {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(function (id, done) {
-  done(null, id);
-});
+// passport.deserializeUser(function (id, done) {
+//   done(null, id);
+// });
 
 // const jwt = require("jsonwebtoken");
 // const authToken = (req, res, next) => {

@@ -1,3 +1,17 @@
+const passport = require("passport");
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findOne({ where: id })
+    .then((user) => done(null, user))
+    .catch((err) => {
+      done(err);
+    });
+});
+
 // const passport = require("passport");
 // const { Strategy: LocalStrategy } = require("passport-local");
 

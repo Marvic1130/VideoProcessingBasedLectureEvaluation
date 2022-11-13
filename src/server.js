@@ -19,7 +19,7 @@ app.use(morgan("dev")); // 요청과 응답에 대한 정보를 콘솔에 기록
 app.use(express.json()); // 폼 데이터나 AJAX요청의 데이터를 처리하는데 사용
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-passportConfig();
+// passportConfig();
 
 app.use("/", userRouter);
 
@@ -48,6 +48,8 @@ const options = {
   database: "nodejs",
 };
 
+const sessionStore = new MySQLStore(options);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -56,7 +58,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-const sessionStore = new MySQLStore(options);
 
 app.use(passport.initialize());
 app.use(passport.session());
