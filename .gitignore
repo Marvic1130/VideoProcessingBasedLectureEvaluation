@@ -3,3 +3,4 @@ CreateTrainingData/off/*
 CreateTrainingData/on/*
 .DS_Store
 
+node_modules

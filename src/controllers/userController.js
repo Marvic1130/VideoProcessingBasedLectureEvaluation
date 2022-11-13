@@ -39,6 +39,18 @@ module.exports.getLogin = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/login.html"));
 };
 
+module.exports.getLectureEvaluation = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/lectureEvaluation.html")
+  );
+};
+
+module.exports.getClassStudent = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/classStudent.html")
+  );
+};
+
 module.exports.professorJoin = async (req, res) => {
   const { id, pw, college, name, department, pNum } = req.body;
 

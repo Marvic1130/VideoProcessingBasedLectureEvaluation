@@ -11,6 +11,8 @@ userRouter.post("/sJoin", user.studentJoin);
 userRouter.post("/pJoin", user.professorJoin);
 userRouter.get("/", user.getLogin);
 userRouter.post("/", user.login);
+userRouter.get("/lectureEvaluation", user.getLectureEvaluation);
+userRouter.get("/classStudent", user.getClassStudent);
 
 // export default userRouter;
 module.exports = userRouter;

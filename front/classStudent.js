@@ -10,50 +10,51 @@ classBtn.addEventListener("click", () => {
   }
 });
 
-const finishBtn = document.querySelector("#finishBtn"); // 수업 등록 완료 버튼
+const searchBtn = document.querySelector("#searchBtn"); // 수업 등록 완료 버튼
 const classDiv = document.querySelector(".classDiv"); // 수업 목록
+
 let uniqueCount = 1;
 
-finishBtn.addEventListener("click", () => {
+const lectures = ["class1", "class2", "class3"]; // 임시 수업 데이터
+
+searchBtn.addEventListener("click", () => {
   // 클릭해서
   if (!selectContainer.classList.contains("on")) {
     // on클래스 없으면
-    const optionValue = document.querySelector("#classSelect"); // 셀렉트 박스
-    let value = optionValue.options[optionValue.selectedIndex].text; // 셀렉트 박스에서 옵션값 가져오기
-    const childBtn = document.createElement("button"); // 새로운 버튼 엘리먼트 생성
-    const aTag = document.createElement("a");
-    childBtn.id = "classBtn" + uniqueCount; // 버튼 스타일 통일
-    childBtn.addEventListener("click", () => {
-      aTag.innerHTML = childBtn.outerHTML;
-      aTag.setAttribute("href", "/lectureEvaluation");
-      childBtn.parentNode.insertBefore(aTag, childBtn);
-      childBtn.remove();
+
+    let lectureValue = document.querySelector("#classSearch").value;
+
+    const childBtn = document.createElement("button"); // 검색하면 생기는 버튼
+    const classSearch = document.querySelector("#classSearch"); // 수업 검색 인풋
+
+    lectures.find((elem) => {
+      if (elem == lectureValue) {
+        childBtn.innerText = lectureValue;
+        classSearch.insertAdjacentElement("afterend", childBtn);
+        const br = document.createElement("br");
+        classSearch.insertAdjacentElement("afterend", br);
+      } else {
+        return 0;
+      }
     });
-    uniqueCount += 1;
-    childBtn.innerText = value; // 새로운 버튼 text 옵션값으로 넣음
-    classDiv.appendChild(childBtn); // class 목록에 새로운 수업 자식으로 붙이기
-    classDiv.appendChild(classBtn); // 그 후 플러스 버튼 붙이기
-    selectContainer.style.display = "none"; // 다시 셀렉트 컨테이너 none
+
+    childBtn.addEventListener("click", () => {
+      // 버튼 클릭시
+      const lectureBtn = document.createElement("button"); // 수업 목록에 생길 버튼
+      lectureBtn.id = "classBtn" + uniqueCount;
+      lectureBtn.innerText = lectureValue;
+      classBtn.insertAdjacentElement("beforebegin", lectureBtn); // 수업 목록에 버튼 달기
+
+      const aTag = document.createElement("a"); // 버튼에 적용할 a태그
+      aTag.innerHTML = lectureBtn.outerHTML;
+      aTag.setAttribute("href", "/lectureEvaluation");
+      lectureBtn.parentNode.insertBefore(aTag, lectureBtn);
+      lectureBtn.remove(); // 여기까지 a태그로 감싸는 과정
+
+      selectContainer.style.display = "none"; // 다시 셀렉트 컨테이너 none
+      uniqueCount += 1;
+      childBtn.remove(); // 검색해서 뜬 버튼 삭제
+      classSearch.value = "";
+    });
   }
 });
-
-const cookies = Object.fromEntries(
-  document.cookie.split(";").map((cookie) => cookie.trim().split("="))
-);
-
-console.log(cookies.accessToken);
-
-fetch("http://localhost:3000", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-  .then((response) => response.json())
-  .then((response) => {
-    if (response) {
-      console.log("hi");
-      localStorage.setItem("wtw-token", cookies.accessToken);
-    }
-  })
-  .catch((err) => console.log(err));
