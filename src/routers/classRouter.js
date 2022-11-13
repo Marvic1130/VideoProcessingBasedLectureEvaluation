@@ -6,7 +6,7 @@ const classRouter = express.Router(); //라우터 생성
 
 classRouter.post("/:id([^0-9]/g)/evaluation", classes.evaluation);
 //미들웨어 설정
-classRouter.route("/register").all(authToken).post(classes.register);
+classRouter.route("/register").post(classes.register);
 classRouter.get("/find", classes.find);
 
 // export default userRouter;

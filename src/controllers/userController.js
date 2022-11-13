@@ -59,14 +59,11 @@ module.exports.professorJoin = async (req, res) => {
   }
 };
 
-module.exports.login = async (req, res) => {
-  app.post(
-    "/login",
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login",
-    })
-  );
+module.exports.postLogin = async (req, res) => {
+  passport.authenticate("local", { failureRedirect: "/" }),
+    function (req, res) {
+      return res.redirect("/main");
+    };
 };
 
 module.exports.logout = async (req, res) => {
