@@ -7,6 +7,8 @@ const passport = require("passport");
 const passportConfig = require("./passport");
 const path = require("path");
 const classRouter = require("./routers/classRouter");
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
 
 dotenv.config();
 const app = express();
@@ -37,5 +39,26 @@ sequelize
 app.listen(3000, () => {
   console.log("Port 3000 is opened");
 });
+
+const options = {
+  host: "127.0.0.1",
+  user: "root",
+  port: 3306,
+  password: "9401",
+  database: "nodejs",
+};
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+const sessionStore = new MySQLStore(options);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //passportConfig();

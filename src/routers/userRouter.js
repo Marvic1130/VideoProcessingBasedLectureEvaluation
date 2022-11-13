@@ -1,6 +1,6 @@
 const express = require("express");
 const user = require("../controllers/userController");
-const passport = require("../passport/index");
+const passport = require("passport");
 
 // import express from "express";
 // import { home } from "../controlers/userControler.js";
@@ -10,9 +10,13 @@ userRouter.get("/main", user.home);
 userRouter.post("/sJoin", user.studentJoin);
 userRouter.post("/pJoin", user.professorJoin);
 userRouter.get("/", user.getLogin);
-userRouter.post("/", user.login);
-userRouter.get("/lectureEvaluation", user.getLectureEvaluation);
-userRouter.get("/classStudent", user.getClassStudent);
+userRouter.post(
+  "/",
+  passport.authenticate("local", {
+    successRedirect: "/main",
+    failureRedirect: "/",
+  })
+);
 
 // export default userRouter;
 module.exports = userRouter;
