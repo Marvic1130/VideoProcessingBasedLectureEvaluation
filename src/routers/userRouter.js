@@ -1,28 +1,20 @@
 const express = require("express");
-const {
-  sClass,
-  pClass,
-  selectSignup,
-  getSJoin,
-  postSJoin,
-  getPJoin,
-  postPJoin,
-  getLogin,
-  postLogin,
-} = require("../controllers/userController");
+const user = require("../controllers/userController");
 const userRouter = express.Router(); //라우터 생성
 
-userRouter.get("/pClass", pClass);
-userRouter.get("/sClass", sClass);
+userRouter.get("/main", user.home);
+userRouter.get("/selectSignup", user.selectSignup);
+userRouter.get("/selectSignup/studentSignup", user.getSJoin);
+userRouter.get("/selectSignup/professorSignup", user.getPJoin);
+userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
+userRouter.get("/sClass", user.getClassStudent);
+userRouter.get("/pCalss", user.getClassProfessor);
 
-userRouter.get("/selectSignup", selectSignup);
-userRouter.get("/selectSignup/studentSignup", getSJoin);
-userRouter.get("/selectSignup/professorSignup", getPJoin);
+userRouter.route("/sJoin").post(user.postSJoin);
+userRouter.route("/pJoin").post(user.postPJoin);
 
-userRouter.route("/sJoin").post(postSJoin);
-userRouter.route("/pJoin").post(postPJoin);
-
-userRouter.route("/").get(getLogin).post(postLogin);
+userRouter.route("/").get(user.getLogin).post(user.postLogin);
 
 // export default userRouter;
 module.exports = userRouter;
+//
