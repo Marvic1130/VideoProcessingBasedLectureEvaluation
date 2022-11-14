@@ -10,6 +10,18 @@ module.exports.home = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/class.html"));
 };
 
+module.exports.sClass = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/classStudent.html")
+  );
+};
+
+module.exports.pClass = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/classProfessor.html")
+  );
+};
+
 module.exports.selectSignup = async (req, res) => {
   return res.sendFile(
     path.join(__dirname + "../../../front/selectSignup.html")
@@ -73,8 +85,11 @@ module.exports.getLogin = async (req, res) => {
 };
 
 module.exports.postLogin = async (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("local", async (err, user, info) => {
     // (err, user, info) 는 passport의 done(err, data, logicErr) 세 가지 인자
+    const student = await Student.findOne({ id: user.id });
+    const professor = await Professor.findOne({ id: user.id });
+    console.log("user", user);
     if (err) {
       // 서버에 에러가 있는 경우
       console.error(err);
@@ -88,6 +103,12 @@ module.exports.postLogin = async (req, res, next) => {
       // req.login() 요청으로 passport.serializeUser() 실행
       if (loginErr) {
         return next(loginErr);
+      } else if (student) {
+        console.log("student login");
+        return res.redirect("/sClass");
+      } else if (professor) {
+        console.log("professor login");
+        return res.redirect("/pClass");
       }
       return res.redirect("/main");
     });
