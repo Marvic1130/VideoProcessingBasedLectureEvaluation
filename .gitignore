@@ -1,5 +1,5 @@
-CreateTrainingData/croppedData/*
-CreateTrainingData/off/*
-CreateTrainingData/on/*
+MachineLearning/CreateTrainingData/croppedData
+MachineLearning/CreateTrainingData/off
+MachineLearning/CreateTrainingData/on
 .DS_Store
-
+.idea
