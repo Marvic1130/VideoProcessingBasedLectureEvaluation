@@ -7,7 +7,8 @@ userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
 userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
-userRouter.get("/getClassStudent", user.getClassStudent);
+userRouter.get("/sClass", user.getClassStudent);
+userRouter.get("/pCalss", user.getClassProfessor);
 
 userRouter.route("/sJoin").post(user.postSJoin);
 userRouter.route("/pJoin").post(user.postPJoin);
@@ -16,3 +17,4 @@ userRouter.route("/").get(user.getLogin).post(user.postLogin);
 
 // export default userRouter;
 module.exports = userRouter;
+//
