@@ -2,4 +2,9 @@ MachineLearning/CreateTrainingData/croppedData
 MachineLearning/CreateTrainingData/off
 MachineLearning/CreateTrainingData/on
 .DS_Store
+<<<<<<< .merge_file_tg0gRF
 .idea
+=======
+
+node_modules
+>>>>>>> .merge_file_7tqUOl
