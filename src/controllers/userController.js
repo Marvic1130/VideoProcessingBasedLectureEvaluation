@@ -104,7 +104,7 @@ module.exports.getLogin = async (req, res) => {
 };
 
 module.exports.postLogin = async (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("local", { session: false }, (err, user, info) => {
     // (err, user, info) 는 passport의 done(err, data, logicErr) 세 가지 인자
     if (err) {
       // 서버에 에러가 있는 경우
@@ -115,12 +115,24 @@ module.exports.postLogin = async (req, res, next) => {
       // 로직 상 에러가 있는 경우
       return res.status(401).send(info.reason);
     }
-    return req.login(user, (loginErr) => {
+
+    return req.login(user, async (loginErr) => {
+      const id = user.id;
       // req.login() 요청으로 passport.serializeUser() 실행
       if (loginErr) {
         return next(loginErr);
+      } else if (!loginErr) {
+        try {
+          const student = await Student.findOne({ where: { id } });
+          if (student) {
+            return res.redirect("/sClass");
+          } else {
+            return res.redirect("/pCalss");
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
-      return res.redirect("/main");
     });
   })(req, res, next);
 };
