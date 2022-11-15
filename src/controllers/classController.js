@@ -2,8 +2,14 @@ const { Op } = require("sequelize");
 const Class = require("../models/Class");
 
 module.exports.register = async (req, res) => {
-  const { className, professor, department, classTime, place, people } =
-    req.body;
+  const {
+    className,
+    professor,
+    department,
+    classTime,
+    place,
+    people,
+  } = req.body;
 
   try {
     await Class.create({
@@ -14,9 +20,7 @@ module.exports.register = async (req, res) => {
       place,
       people,
     });
-    return res
-      .json({ className, professor, department, classTime, place, people })
-      .redirect("/");
+    return res.redirect("/pClass");
   } catch (err) {
     console.log(err);
   }

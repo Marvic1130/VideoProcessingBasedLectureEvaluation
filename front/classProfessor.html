@@ -35,21 +35,23 @@
       <h1 class="title">수업등록</h1>
       <div class="classBox">
         <div class="formBox">
-          <!-- <form method="POST"> -->
-          <label for="classTitle" id="titleLabel">수업명</label>
-          <input type="text" id="classTitle" /><br />
-          <label for="classTime" id="timeLabel">수업 시간</label>
-          <input type="text" id="classTime" /><br />
-          <label for="department" id="departmentLabel">학과</label>
-          <input type="text" id="department" /><br />
-          <label for="place" id="placeLabel">장소</label>
-          <input type="text" id="place" /><br />
-          <label for="grades" id="gradesLabel">학점</label>
-          <input type="text" id="grades" /><br />
-          <label for="numOfPeople" id="peopleLabel">인원수</label>
-          <input type="text" id="numOfPeople" /><br />
-          <button id="registrationBtn">등록하기</button>
-          <!-- </form> -->
+          <form method="POST" action="/class/register">
+            <label for="className" id="titleLabel">수업명</label>
+            <input type="text" id="classTitle" name="className" /><br />
+            <label for="professor" id="professor">교수명</label>
+            <input type="text" id="professorInput" name="professor" /><br />
+            <label for="department" id="departmentLabel">학과</label>
+            <input type="text" id="department" name="department" /><br />
+            <label for="classTime" id="timeLabel">수업 시간</label>
+            <input type="text" id="classTime" name="classTime" /><br />
+            <label for="place" id="placeLabel">장소</label>
+            <input type="text" id="place" name="place" /><br />
+            <label for="grades" id="gradesLabel">학점</label>
+            <input type="text" id="grades" name="grades" /><br />
+            <label for="numOfPeople" id="peopleLabel">인원수</label>
+            <input type="text" id="numOfPeople" name="people" /><br />
+            <button id="registrationBtn">등록하기</button>
+          </form>
         </div>
       </div>
     </div>
