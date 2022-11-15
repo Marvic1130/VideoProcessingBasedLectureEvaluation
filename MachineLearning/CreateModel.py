@@ -1,3 +1,4 @@
+import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dropout, Dense
 from keras.layers import Flatten, Convolution2D, MaxPooling2D, Conv2D
@@ -8,8 +9,11 @@ import os
 import cv2
 import numpy as np
 import matplotlib
-matplotlib.use('TKAgg')
 from matplotlib import pyplot as plt
+import absl.logging
+import pb_pbtxt_converter
+matplotlib.use('TKAgg')
+absl.logging.set_verbosity(absl.logging.ERROR)
 
 groups_folder_path = 'CreateTrainingData'
 categories = ['on', 'off']
@@ -97,4 +101,8 @@ f1 = f1_score(Y_test, Y_pred, average='macro')
 print('Test accuracy:', accuracy_score(Y_test, Y_pred))
 print('Test loss:', loss)
 print("F1-score: {:.2%}".format(f1))
+path = str(hex(X_train.shape[0]))[2:] + "F" + str(hex(int(f1*10000)))[2:]
 
+modelpath = './models' + '/' + path
+
+model.save(modelpath, save_format='tf')
