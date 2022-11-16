@@ -25,8 +25,8 @@ const options = {
   host: "127.0.0.1",
   user: "root",
   port: 3306,
-  password: "wodbs223",
-  database: "database_backend",
+  password: "0000",
+  database: "blink2",
 };
 
 const sessionStore = new MySQLStore(options);
@@ -39,6 +39,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", userRouter);
 
@@ -58,8 +61,5 @@ sequelize
 app.listen(3000, () => {
   console.log("Port 3000 is opened");
 });
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 //passportConfig();

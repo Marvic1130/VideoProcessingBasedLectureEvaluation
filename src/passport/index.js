@@ -1,6 +1,7 @@
 const local = require("./localStrategy");
 const passport = require("passport");
 const Student = require("../models/Student");
+const Professor = require("../models/Professor");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -12,11 +13,11 @@ module.exports = () => {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const student = await Student.findOne({
+      const professor = await Professor.findOne({
         // 프론트에서 cookie를 보내면, 서버는 메모리에서 cookie와 관련된 id를 찾은 뒤 DB에서 user 정보를 불러옴.
         where: { id },
       });
-      return done(null, student); // 불러온 user 정보는 req.user에 저장
+      return done(null, professor); // 불러온 user 정보는 req.user에 저장
     } catch (e) {
       console.error(e);
       return done(e);

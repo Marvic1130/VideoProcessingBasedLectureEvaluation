@@ -43,9 +43,9 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Class.belongsTo(db.Student, { foreignKey: "sClassId", targetKey: "id" });
+    db.Class.belongsTo(db.Student, { foreignKey: "classId", targetKey: "id" });
     db.Class.belongsTo(db.Professor, {
-      foreignKey: "pClassId",
+      foreignKey: "classId",
       targetKey: "id",
     });
     db.Class.hasOne(db.Evaluation, {
