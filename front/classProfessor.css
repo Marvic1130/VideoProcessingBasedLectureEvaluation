@@ -135,7 +135,8 @@ input[id="trigger"]:checked + label[for="trigger"] {
 #department,
 #place,
 #grades,
-#numOfPeople {
+#numOfPeople,
+#professorInput {
   width: 310px;
   height: 30px;
   border: none;
@@ -143,6 +144,9 @@ input[id="trigger"]:checked + label[for="trigger"] {
   margin: 10px;
 }
 #titleLabel {
+  margin-right: 22px;
+}
+#professor {
   margin-right: 22px;
 }
 #departmentLabel {
