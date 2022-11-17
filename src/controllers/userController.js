@@ -32,7 +32,10 @@ module.exports.getLectureEvaluation = async (req, res) => {
 module.exports.getClassStudent = async (req, res) => {
   const { id } = req.user;
   try {
-    const classList = await Class.findAll({ where: { classId: id } });
+    const classList = await Class.findAll({
+      raw: true,
+      where: { classId: id },
+    });
     console.log(classList);
     return res.render("views/classStudent", { class: classList });
   } catch (err) {
@@ -43,7 +46,10 @@ module.exports.getClassStudent = async (req, res) => {
 module.exports.getClassProfessor = async (req, res) => {
   const { id } = req.user;
   try {
-    const classList = await Class.findAll({ where: { classId: id } });
+    const classList = await Class.findAll({
+      raw: true,
+      where: { classId: id },
+    });
     console.log(classList);
     return res.render("views/classProfessor", { class: classList });
   } catch (err) {
