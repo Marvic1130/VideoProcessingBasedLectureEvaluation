@@ -25,8 +25,8 @@ const options = {
   host: "127.0.0.1",
   user: "root",
   port: 3306,
-  password: "0000",
-  database: "blink2",
+  password: "wodbs223",
+  database: "database_backend",
 };
 
 const sessionStore = new MySQLStore(options);
