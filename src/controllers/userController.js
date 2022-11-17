@@ -30,9 +30,14 @@ module.exports.getLectureEvaluation = async (req, res) => {
 };
 
 module.exports.getClassStudent = async (req, res) => {
-  return res.sendFile(
-    path.join(__dirname + "../../../front/classStudent.html")
-  );
+  const { id } = req.user;
+  try {
+    const classList = await Class.findAll({ where: { classId: id } });
+    console.log(classList);
+    return res.render("views/classStudent", { class: classList });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports.getClassProfessor = async (req, res) => {
@@ -40,9 +45,7 @@ module.exports.getClassProfessor = async (req, res) => {
   try {
     const classList = await Class.findAll({ where: { classId: id } });
     console.log(classList);
-    return res.sendFile(
-      path.join(__dirname + "../../../front/classProfessor.html")
-    );
+    return res.render("views/classProfessor", { class: classList });
   } catch (err) {
     console.log(err);
   }
