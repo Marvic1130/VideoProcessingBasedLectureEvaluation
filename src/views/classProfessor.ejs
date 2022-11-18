@@ -25,9 +25,18 @@
         <p><a>tech</a></p>
       </div>
       <h1 class="title">I see you 강의 평가 시스템</h1>
-      <% var data = class;%>
       <div class="classDiv">
-        <button id="classBtn"><%= data %></button>
+        <% for(let i = 0; i < data.length; i++) { const datas = data[i]; %> <%
+        if(datas) { %>
+        <div id="newBtnDiv">
+          <button type="button" id="deleteBtn" onclick="deleteDiv(this)">
+            Delete
+          </button>
+          <a href="/getDataPage"
+            ><button id="newClassBtn"><%= datas.className %></button></a
+          >
+        </div>
+        <% } %> <% } %>
         <button id="classBtn">+</button>
       </div>
     </div>
@@ -57,5 +66,10 @@
       </div>
     </div>
   </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"
+  ></script>
   <script src="/front/classProfessor.js"></script>
 </html>

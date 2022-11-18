@@ -29,6 +29,10 @@ module.exports.getLectureEvaluation = async (req, res) => {
   );
 };
 
+module.exports.getDataPage = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/dataPage.html"));
+};
+
 module.exports.getClassStudent = async (req, res) => {
   const { id } = req.user;
   try {
@@ -36,8 +40,7 @@ module.exports.getClassStudent = async (req, res) => {
       raw: true,
       where: { classId: id },
     });
-    console.log(classList);
-    return res.render("views/classStudent", { class: classList });
+    return res.render("classStudent", { data: classList });
   } catch (err) {
     console.log(err);
   }
@@ -50,8 +53,7 @@ module.exports.getClassProfessor = async (req, res) => {
       raw: true,
       where: { classId: id },
     });
-    console.log(classList);
-    return res.render("views/classProfessor", { class: classList });
+    return res.render("classProfessor", { data: classList });
   } catch (err) {
     console.log(err);
   }

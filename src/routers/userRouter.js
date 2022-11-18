@@ -7,6 +7,7 @@ userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
 userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
+userRouter.get("/getDataPage", user.getDataPage);
 
 userRouter
   .route("/sClass")
