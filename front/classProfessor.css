@@ -194,10 +194,13 @@ body {
   bottom: 30px;
   font-family: "gongli";
 }
+#hiddenValue {
+  display: none;
+}
 #deleteBtn {
   position: relative;
-  left: 304px;
-  bottom: 28px;
+  left: 98px;
+  top: 122px;
   z-index: 1;
   border: none;
   background-color: #d9d9d9;
