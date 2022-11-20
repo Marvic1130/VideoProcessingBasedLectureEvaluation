@@ -7,6 +7,7 @@ classRouter.post("/:id([^0-9]/g)/evaluation", classes.evaluation);
 //미들웨어 설정
 classRouter.route("/register").post(classes.register);
 classRouter.get("/find", classes.find);
+classRouter.route("/delete").post(classes.delete);
 
 // export default userRouter;
 

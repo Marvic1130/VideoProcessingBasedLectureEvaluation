@@ -45,8 +45,7 @@ module.exports.find = async (req, res) => {
         ],
       },
     });
-    console.log(item._id);
-    return res.json({ item });
+    return res.status(200);
     // if (item.length === 0) {
     //   return res.status(401).json({ message: "일치하는 수업이 없습니다!" });
     // }
@@ -65,6 +64,20 @@ module.exports.evaluation = async (req, res) => {
     return res
       .json({ className, professor, department, classTime, place, people })
       .redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports.delete = async (req, res) => {
+  const { hiddenValue } = req.body;
+  const { id } = req.user;
+  const professor = await Professor.findOne({ where: { id } });
+  try {
+    if (professor) {
+      await Class.destroy({ where: { className: hiddenValue } });
+      return res.redirect("/pClass");
+    }
   } catch (err) {
     console.log(err);
   }

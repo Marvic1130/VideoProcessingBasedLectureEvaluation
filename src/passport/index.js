@@ -12,12 +12,15 @@ module.exports = () => {
   });
 
   passport.deserializeUser(async (id, done) => {
+    const professor = await Professor.findOne({ where: { id } });
+    const student = await Student.findOne({ where: { id } });
+
     try {
-      const professor = await Professor.findOne({
-        // 프론트에서 cookie를 보내면, 서버는 메모리에서 cookie와 관련된 id를 찾은 뒤 DB에서 user 정보를 불러옴.
-        where: { id },
-      });
-      return done(null, professor); // 불러온 user 정보는 req.user에 저장
+      if (professor) {
+        return done(null, professor); // 불러온 user 정보는 req.user에 저장
+      } else {
+        return done(null, student); // 불러온 user 정보는 req.user에 저장
+      }
     } catch (e) {
       console.error(e);
       return done(e);

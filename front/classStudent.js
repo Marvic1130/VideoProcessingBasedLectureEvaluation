@@ -15,14 +15,16 @@ const classDiv = document.querySelector(".classDiv"); // 수업 목록
 
 let uniqueCount = 1;
 
-const lectures = ["class1", "class2", "class3"]; // 임시 수업 데이터
+// const lectures = ["class1", "class2", "class3"]; // 임시 수업 데이터
 
 searchBtn.addEventListener("click", () => {
   // 클릭해서
+  console.log("SearchBtn active");
   if (!selectContainer.classList.contains("on")) {
     // on클래스 없으면
 
     let lectureValue = document.querySelector("#classSearch").value;
+    console.log(lectureValue);
 
     const childBtn = document.createElement("button"); // 검색하면 생기는 버튼
     const classSearch = document.querySelector("#classSearch"); // 수업 검색 인풋
