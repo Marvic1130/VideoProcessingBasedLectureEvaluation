@@ -7,8 +7,16 @@ userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
 userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
-userRouter.get("/sClass", user.getClassStudent);
-userRouter.get("/pCalss", user.getClassProfessor);
+userRouter.get("/getDataPage", user.getDataPage);
+
+userRouter
+  .route("/sClass")
+  .get(user.getClassStudent)
+  .post(user.postClassStudent);
+userRouter
+  .route("/pClass")
+  .get(user.getClassProfessor)
+  .post(user.postClassProfessor);
 
 userRouter.route("/sJoin").post(user.postSJoin);
 userRouter.route("/pJoin").post(user.postPJoin);

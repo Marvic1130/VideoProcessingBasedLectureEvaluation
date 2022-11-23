@@ -4,6 +4,7 @@ const passport = require("passport");
 
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+const Class = require("../models/Class");
 
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.home = async (req, res) => {
@@ -28,16 +29,34 @@ module.exports.getLectureEvaluation = async (req, res) => {
   );
 };
 
+module.exports.getDataPage = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/dataPage.html"));
+};
+
 module.exports.getClassStudent = async (req, res) => {
-  return res.sendFile(
-    path.join(__dirname + "../../../front/classStudent.html")
-  );
+  const { id } = req.user;
+  try {
+    const classList = await Class.findAll({
+      raw: true,
+      where: { classId: id },
+    });
+    return res.render("classStudent", { data: classList });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports.getClassProfessor = async (req, res) => {
-  return res.sendFile(
-    path.join(__dirname + "../../../front/classProfessor.html")
-  );
+  const { id } = req.user;
+  try {
+    const classList = await Class.findAll({
+      raw: true,
+      where: { classId: id },
+    });
+    return res.render("classProfessor", { data: classList });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports.getStudentSignup = async (req, res) => {
@@ -127,7 +146,7 @@ module.exports.postLogin = async (req, res, next) => {
           if (student) {
             return res.redirect("/sClass");
           } else {
-            return res.redirect("/pCalss");
+            return res.redirect("/pClass");
           }
         } catch (error) {
           console.log(error);
@@ -149,6 +168,34 @@ module.exports.logout = async (req, res) => {
       department,
     });
     return res.redirect("/login");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports.postClassStudent = async (req, res) => {
+  const { id } = req.user;
+  try {
+    const studentClass = await Student.findAll({
+      where: {
+        userId: id,
+      },
+    });
+    return res.json({ studentClass });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports.postClassProfessor = async (req, res) => {
+  const { id } = req.user;
+  try {
+    const professorClass = await Professor.findAll({
+      where: {
+        userId: id,
+      },
+    });
+    return res.json({ professorClass });
   } catch (err) {
     console.log(err);
   }

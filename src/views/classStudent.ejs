@@ -26,6 +26,17 @@
       </div>
       <h1 class="title">I see you 강의 평가 시스템</h1>
       <div class="classDiv">
+        <% for(let i = 0; i < data.length; i++) { const datas = data[i]; %> <%
+        if(datas) { %>
+        <div id="newBtnDiv">
+          <button type="button" id="deleteBtn" onclick="deleteDiv(this)">
+            Delete
+          </button>
+          <a href="/getDataPage"
+            ><button id="newClassBtn"><%= datas.className %></button></a
+          >
+        </div>
+        <% } %> <% } %>
         <button id="classBtn">+</button>
       </div>
     </div>
@@ -34,13 +45,13 @@
     <div class="select-container">
       <div class="classBox">
         <div class="formBox">
-          <!-- <form method="POST"> -->
-          <h1 class="classSelectTitle">수업선택</h1>
-          <label for="classSearch">수업명</label>
-          <input type="text" id="classSearch" />
+          <form method="GET" action="/class/find">
+            <h1 class="classSelectTitle">수업선택</h1>
+            <label for="classSearch">수업명</label>
+            <input type="text" id="classSearch" name="keyword"/>
 
-          <br /><button id="searchBtn">검색</button>
-          <!-- </form> -->
+            <br /><button id="searchBtn">검색</button>
+          <form>
         </div>
       </div>
     </div>
