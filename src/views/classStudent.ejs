@@ -29,11 +29,19 @@
         <% for(let i = 0; i < data.length; i++) { const datas = data[i]; %> <%
         if(datas) { %>
         <div id="newBtnDiv">
-          <button type="button" id="deleteBtn" onclick="deleteDiv(this)">
-            Delete
-          </button>
+          <form method="POST" action="/class/delete">
+            <input
+              id="hiddenValue"
+              name="hiddenValue"
+              type="text"
+              value="<%= datas.className %>"
+            />
+            <button type="submit" id="deleteBtn" onclick="deleteDiv(this)">
+              Delete
+            </button>
+          </form>
           <a href="/getDataPage"
-            ><button id="newClassBtn"><%= datas.className %></button></a
+            ><button id="defaultClassBtn"><%= datas.className %></button></a
           >
         </div>
         <% } %> <% } %>
@@ -41,17 +49,15 @@
       </div>
     </div>
 
-    <!-- 수업 선택 -->
     <div class="select-container">
       <div class="classBox">
         <div class="formBox">
-          <form method="GET" action="/class/find">
-            <h1 class="classSelectTitle">수업선택</h1>
-            <label for="classSearch">수업명</label>
-            <input type="text" id="classSearch" name="keyword"/>
-
-            <br /><button id="searchBtn">검색</button>
-          <form>
+          <h1 class="classSelectTitle">수업선택</h1>
+          <label for="classSearch">수업명</label>
+          <input type="text" id="classSearch" name="keyword" /><br />
+          <br /><button type="submit" id="searchBtn" onclick="searchSubmit()">
+            검색
+          </button>
         </div>
       </div>
     </div>
@@ -62,4 +68,6 @@
     crossorigin="anonymous"
   ></script>
   <script src="/front/classStudent.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </html>
