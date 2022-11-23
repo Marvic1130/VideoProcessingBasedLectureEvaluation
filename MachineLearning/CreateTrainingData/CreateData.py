@@ -1,7 +1,6 @@
 import os
 import random
 import time
-
 import cv2
 import numpy as np
 from keras.models import load_model
@@ -21,7 +20,7 @@ def rename_file(dist_lable: str):
 
 rename_file('temp')
 
-facenet = cv2.dnn.readNet('models/deploy.prototxt', 'models/res10_300x300_ssd_iter_140000.caffemodel')
+facenet = cv2.dnn.readNet('models/deploy.prototxt', 'ㅊ')
 model = load_model('8LBMI2.h5')
 
 cap = cv2.VideoCapture(0)

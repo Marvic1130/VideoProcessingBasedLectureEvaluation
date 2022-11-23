@@ -1,6 +1,7 @@
 MachineLearning/CreateTrainingData/croppedData
 MachineLearning/CreateTrainingData/off
 MachineLearning/CreateTrainingData/on
+MachineLearning/__pycache__
 .DS_Store
 <<<<<<< .merge_file_tg0gRF
 .idea

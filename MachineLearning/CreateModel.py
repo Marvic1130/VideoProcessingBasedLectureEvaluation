@@ -1,4 +1,5 @@
 import tensorflow as tf
+import keras
 from keras.models import Sequential
 from keras.layers import Dropout, Dense
 from keras.layers import Flatten, Convolution2D, MaxPooling2D, Conv2D
@@ -11,7 +12,7 @@ import numpy as np
 import matplotlib
 from matplotlib import pyplot as plt
 import absl.logging
-import pb_pbtxt_converter
+from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2
 matplotlib.use('TKAgg')
 absl.logging.set_verbosity(absl.logging.ERROR)
 
@@ -48,7 +49,7 @@ print(X_train.shape)
 print(X_train.shape[1:])
 
 model = Sequential()
-model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(128, 192, 1)))
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(128, 192, 3)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
@@ -103,6 +104,8 @@ print('Test loss:', loss)
 print("F1-score: {:.2%}".format(f1))
 path = str(hex(X_train.shape[0]))[2:] + "F" + str(hex(int(f1*10000)))[2:]
 
-modelpath = './models' + '/' + path
+model_path = './models' + '/' + path
 
-model.save(modelpath, save_format='tf')
+tf.saved_model.save(model, model_path)
+model.save(model_path + "/" + path + ".h5")
+print('save model path:', path)
