@@ -3,6 +3,7 @@
     "username": "root",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "password": "9401",
     "database": "nodejs",
 =======
@@ -13,6 +14,10 @@
     "password": "0000",
     "database": "blink2",
 >>>>>>> 03437d227ce4787805e326b95c6c109792431000
+=======
+    "password": "wodbs223",
+    "database": "database_backend",
+>>>>>>> d5937f31b31ee020f093f40a9484b065ffeb86f9
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
