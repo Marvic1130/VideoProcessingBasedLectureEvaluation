@@ -37,11 +37,13 @@ module.exports.getDataPage = async (req, res) => {
 module.exports.getClassStudent = async (req, res) => {
   const { id } = req.user;
   try {
+    const allClass = await Class.findAll();
+    console.log(allClass);
     const classList = await Class.findAll({
       raw: true,
       where: { classId: id },
     });
-    return res.render("classStudent", { data: classList });
+    return res.render("classStudent", { data: classList, allClass });
   } catch (err) {
     console.log(err);
   }
@@ -50,6 +52,8 @@ module.exports.getClassStudent = async (req, res) => {
 module.exports.getClassProfessor = async (req, res) => {
   const { id } = req.user;
   try {
+    const allClass = await Class.findAll();
+    console.log(allClass);
     const classList = await Class.findAll({
       raw: true,
       where: { classId: id },

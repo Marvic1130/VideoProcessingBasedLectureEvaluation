@@ -7,26 +7,36 @@ const axios = require("axios");
 module.exports.register = async (req, res) => {
   console.log(req.user);
   const { id } = req.user;
-  const {
-    className,
-    professor,
-    department,
-    classTime,
-    place,
-    people,
-  } = req.body;
+  const { className, professor, department, classTime, place, people } =
+    req.body;
 
+  const professorUser = await Professor.findOne({ where: { id } });
+  const student = await Student.findOne({ where: { id } });
   try {
-    await Class.create({
-      className,
-      professor,
-      department,
-      classTime,
-      place,
-      people,
-      classId: id,
-    });
-    return res.redirect("/pClass");
+    if (professorUser) {
+      await Class.create({
+        className,
+        professor,
+        department,
+        classTime,
+        place,
+        people,
+        classId: id,
+      });
+
+      return res.redirect("/pClass");
+    } else if (student) {
+      await Class.create({
+        className,
+        professor,
+        department,
+        classTime,
+        place,
+        people,
+        classId: id,
+      });
+      return res.redirect("/sClass");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -80,10 +90,15 @@ module.exports.delete = async (req, res) => {
   const { hiddenValue } = req.body;
   const { id } = req.user;
   const professor = await Professor.findOne({ where: { id } });
+  const student = await Student.findOne({ where: { id } });
+
   try {
     if (professor) {
       await Class.destroy({ where: { className: hiddenValue } });
       return res.redirect("/pClass");
+    } else if (student) {
+      await Class.destroy({ where: { className: hiddenValue } });
+      return res.redirect("/sClass");
     }
   } catch (err) {
     console.log(err);
