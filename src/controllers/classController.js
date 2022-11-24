@@ -2,12 +2,19 @@ const { Op } = require("sequelize");
 const Class = require("../models/Class");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+const axios = require("axios");
 
 module.exports.register = async (req, res) => {
   console.log(req.user);
   const { id } = req.user;
-  const { className, professor, department, classTime, place, people } =
-    req.body;
+  const {
+    className,
+    professor,
+    department,
+    classTime,
+    place,
+    people,
+  } = req.body;
 
   try {
     await Class.create({
@@ -45,7 +52,7 @@ module.exports.find = async (req, res) => {
         ],
       },
     });
-    return res.render({ findData: item });
+    return res.json(item);
     // if (item.length === 0) {
     //   return res.status(401).json({ message: "일치하는 수업이 없습니다!" });
     // }
@@ -76,7 +83,7 @@ module.exports.delete = async (req, res) => {
   try {
     if (professor) {
       await Class.destroy({ where: { className: hiddenValue } });
-      return redirect("/pClass");
+      return res.redirect("/pClass");
     }
   } catch (err) {
     console.log(err);

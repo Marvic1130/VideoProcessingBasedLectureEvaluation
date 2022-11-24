@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const path = require("path");
 const passport = require("passport");
+const { Op } = require("sequelize");
 
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
