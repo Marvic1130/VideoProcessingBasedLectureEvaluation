@@ -212,6 +212,11 @@ module.exports.postLectureEvaluation = async (req, res) => {
   const { q1, q2, q3 } = req.body;
   const { className } = req.params;
   const { id } = req.user;
+
+  console.log(req.body);
+  console.log(req.params);
+  console.log(id);
+
   try {
     await Evaluation.create({
       q1,

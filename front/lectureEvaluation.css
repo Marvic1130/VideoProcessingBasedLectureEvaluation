@@ -81,8 +81,7 @@ body {
 
 /* 프로그래스 바 */
 .progress1,
-.progress2,
-.progress3 {
+.progress2 {
   width: 75%;
   height: 50px;
   position: relative;
@@ -96,8 +95,7 @@ body {
 }
 
 .state1,
-.state2,
-.state3 {
+.state2 {
   width: 0;
   height: 50px;
   position: absolute;
@@ -107,8 +105,19 @@ body {
 }
 
 #percentage1,
-#percentage2,
-#percentage3 {
+#percentage2 {
   line-height: 50px;
   vertical-align: middle;
+}
+
+#lectureInput {
+  width: 75%;
+  height: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  border: 1px solid black;
+  margin: 0 auto;
+  border-radius: 2px;
 }
