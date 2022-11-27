@@ -13,18 +13,6 @@ module.exports = class User extends Sequelize.Model {
           allowNull: false,
         },
         q3: {
-          type: Sequelize.INTEGER(20),
-          allowNull: false,
-        },
-        q4: {
-          type: Sequelize.INTEGER(20),
-          allowNull: false,
-        },
-        q5: {
-          type: Sequelize.INTEGER(20),
-          allowNull: false,
-        },
-        q6: {
           type: Sequelize.STRING(255),
           allowNull: false,
         },
@@ -44,7 +32,13 @@ module.exports = class User extends Sequelize.Model {
 
   static associate(db) {
     db.Evaluation.belongsTo(db.Class, {
-      foreignKey: "CevaluationId",
+      foreignKey: "className",
+      sourceKey: "className",
+    });
+  }
+  static associate(db) {
+    db.Evaluation.belongsTo(db.Student, {
+      foreignKey: "userId",
       sourceKey: "id",
     });
   }
