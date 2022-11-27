@@ -77,6 +77,7 @@ childBtn.onclick = function childBtnEvent() {
 };
 
 childBtn.addEventListener("click", () => {
+  // form, div, input 달아야함
   const lectureBtn = document.createElement("button"); // 수업 목록에 생길 버튼
   lectureBtn.id = "classBtn" + uniqueCount;
   lectureBtn.innerText = childBtn.innerText;
