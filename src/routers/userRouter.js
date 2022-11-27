@@ -6,8 +6,11 @@ userRouter.get("/main", user.home);
 userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
-userRouter.get("/getLectureEvaluation", user.getLectureEvaluation);
-userRouter.get("/getDataPage", user.getDataPage);
+userRouter
+  .route("/lectureEvaluation")
+  .get(user.getLectureEvaluation)
+  .post(user.postLectureEvaluation);
+userRouter.route("/dataPage").get(user.getDataPage).post(user.postDataPage);
 
 userRouter
   .route("/sClass")
