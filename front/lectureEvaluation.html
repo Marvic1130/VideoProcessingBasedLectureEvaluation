@@ -16,32 +16,25 @@
       <div class="classBox">
         <h1 class="title">강의평가</h1>
         <div class="formBox">
-          <!-- <form method="POST"> -->
-          <label for="classTitle" id="titleLabel"
-            >1. 강의에 얼마나 집중 했나요?</label
-          ><br />
-          <!-- 전체 영역 -->
-          <div class="progress1">
-            <!-- 프로그래스 바 -->
-            <div class="state1"><span id="percentage1"></span></div>
-          </div>
-
-          <label for="classTime" id="timeLabel">
-            2. 강의내용을 전반적으로 이해할 수 있었다.</label
-          ><br />
-          <!-- 전체 영역 -->
-          <div class="progress2">
-            <!-- 프로그래스 바 -->
-            <div class="state2"><span id="percentage2"></span></div>
-          </div>
-
-          <label for="department" id="departmentLabel">
-            3. 강의에서 말하고싶은 점은?</label
-          ><br />
-          <input type="text" id="lectureInput" />
-
-          <button id="registrationBtn">제출하기</button>
-          <!-- </form> -->
+          <form method="POST" action="/lectureEvaluation">
+            <label for="classTitle" id="titleLabel"
+              >1. 강의에 얼마나 집중 했나요?</label
+            ><br />
+            <div class="progress1">
+              <div class="state1"><span id="percentage1"></span></div>
+            </div>
+            <label for="classTime" id="timeLabel">
+              2. 강의내용을 전반적으로 이해할 수 있었다.</label
+            ><br />
+            <div class="progress2">
+              <div class="state2"><span id="percentage2"></span></div>
+            </div>
+            <label for="department" id="departmentLabel">
+              3. 강의에서 말하고싶은 점은?</label
+            ><br />
+            <input type="text" id="lectureInput" />
+            <button id="registrationBtn">제출하기</button>
+          </form>
         </div>
       </div>
     </div>
