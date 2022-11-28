@@ -51,6 +51,9 @@ function prercentageFun() {
       q2: percent2,
       q3: q3Value,
     })
-    .then((res) => console.log(res))
+    .then((res) => {
+      window.location.href = "/sClass";
+      console.log(res);
+    })
     .then((err) => console.log(err));
 }
