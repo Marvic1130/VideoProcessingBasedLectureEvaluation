@@ -226,7 +226,9 @@ module.exports.postLectureEvaluation = async (req, res) => {
       userId: id,
     });
     return res.redirect("/sClass");
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports.postDataPage = async (req, res) => {

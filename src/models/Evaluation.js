@@ -33,13 +33,11 @@ module.exports = class User extends Sequelize.Model {
   static associate(db) {
     db.Evaluation.belongsTo(db.Class, {
       foreignKey: "className",
-      sourceKey: "className",
+      targetKey: "className",
     });
-  }
-  static associate(db) {
     db.Evaluation.belongsTo(db.Student, {
       foreignKey: "userId",
-      sourceKey: "id",
+      targetKey: "id",
     });
   }
 };

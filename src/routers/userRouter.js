@@ -7,7 +7,7 @@ userRouter.get("/selectSignup", user.selectSignup);
 userRouter.get("/selectSignup/studentSignup", user.getSJoin);
 userRouter.get("/selectSignup/professorSignup", user.getPJoin);
 userRouter
-  .route("/lectureEvaluation")
+  .route("/lectureEvaluation/:className")
   .get(user.getLectureEvaluation)
   .post(user.postLectureEvaluation);
 userRouter.route("/dataPage").get(user.getDataPage).post(user.postDataPage);

@@ -48,9 +48,9 @@ module.exports = class User extends Sequelize.Model {
       foreignKey: "classId",
       targetKey: "id",
     });
-    db.Class.hasOne(db.Evaluation, {
+    db.Class.hasMany(db.Evaluation, {
       foreignKey: "className",
-      targetKey: "className",
+      sourceKey: "className",
     });
   }
 };
