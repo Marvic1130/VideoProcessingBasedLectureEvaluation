@@ -95,3 +95,11 @@ childBtn.addEventListener("click", () => {
   classSearch.value = ""; // 인풋창 초기화
   childBtn.innerText = ""; // 새롬게 생기는 버튼을 위해서 값 초기화
 });
+
+// // 강의평가 페이지로 넘어가는 이벤트
+// // 수업들테이블에 컬럼 하나 추가해서 강의평가 했는지 안했는지 그 컬럼을 axios get으로 받아와서
+// // 아래처럼 강의평가했으면 더이상 강의평가창 안나오게
+// const lectureAtag = document.querySelector("#lectureAtag");
+// if (data == true) {
+//   lectureAtag.setAttribute(href, "");
+// }
