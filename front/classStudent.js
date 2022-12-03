@@ -103,3 +103,9 @@ childBtn.addEventListener("click", () => {
 // if (data == true) {
 //   lectureAtag.setAttribute(href, "");
 // }
+
+const result = require("child_process").spawn("python", ["filename.py"]);
+
+result.stdout.on("data", function (data) {
+  console.log(data.toString());
+});
