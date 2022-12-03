@@ -6,15 +6,17 @@ import cv2
 import numpy as np
 from keras.models import load_model
 
+CreateTrainingData = "./CreateTrainingData"
+datafile_path = CreateTrainingData + "/croppedData"
 
 def rename_file(dist_lable: str):
     count = 0
-    file_list = os.listdir("./CreateTrainingData/croppedData")
+    file_list = os.listdir(datafile_path)
     for i in range(file_list.__len__()):
         if file_list[i].endswith(".jpg"):
 
-            src = "./CreateTrainingData/croppedData/" + file_list[i]
-            dst = "./CreateTrainingData/croppedData/" + dist_lable + count.__str__() + ".jpg"
+            src = datafile_path + "/" + file_list[i]
+            dst = datafile_path + "/" + dist_lable + count.__str__() + ".jpg"
             os.rename(src, dst)
             print(src + " rename to " + dst)
             count += 1
@@ -23,8 +25,8 @@ def rename_file(dist_lable: str):
 if __name__ == '__main__':
     rename_file('temp')
 
-    caffemodel_path = './CreateTrainingData/models/res10_300x300_ssd_iter_140000.caffemodel'
-    prototxt_path= './CreateTrainingData/models/deploy.prototxt'
+    caffemodel_path = CreateTrainingData + '/models/res10_300x300_ssd_iter_140000.caffemodel'
+    prototxt_path = CreateTrainingData + '/models/deploy.prototxt'
     model_path = './models/1018F2623/1018F2623.h5'
     net = cv2.dnn.readNet(model=caffemodel_path, config=prototxt_path)
 
@@ -92,7 +94,7 @@ if __name__ == '__main__':
                 on = modelpredict[0][0]
                 off = modelpredict[0][1]
 
-                file_list = os.listdir("./CreateTrainingData/croppedData")
+                file_list = os.listdir(datafile_path)
 
                 cropped_data_path = "croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
                 height_dist = (y2 - y1) // 2
@@ -109,7 +111,6 @@ if __name__ == '__main__':
                     color = (0, 0, 255)
                     label = 'Eyes off %d%%' % (off * 100)
                     off_time.append(time.time())
-
 
                 cv2.rectangle(frame, pt1=(x1, y1), pt2=(x2, y2), thickness=2, color=color, lineType=cv2.LINE_AA)
                 cv2.putText(frame, text=label, org=(x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.8,
