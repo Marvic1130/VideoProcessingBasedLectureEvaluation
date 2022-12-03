@@ -41,9 +41,6 @@ function prercentageFun() {
   let className = pathname.split("/")[2];
 
   let q3Value = document.querySelector("#lectureInput").value;
-  console.log(percent1);
-  console.log(percent2);
-  console.log(q3Value);
 
   axios
     .post(`/lectureEvaluation/${className}`, {

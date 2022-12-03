@@ -8,6 +8,9 @@ const Professor = require("../models/Professor");
 const Class = require("../models/Class");
 const Evaluation = require("../models/Evaluation");
 
+// const spawn = require("await-spawn");
+const spawn = require("child_process").spawn;
+
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.home = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/class.html"));
@@ -26,6 +29,17 @@ module.exports.getSJoin = async (req, res) => {
 };
 
 module.exports.getLectureEvaluation = async (req, res) => {
+  const result = await spawn("python", [
+    path.join(__dirname + "../../../MachineLearning/BlinkingRecognition.py"),
+  ]);
+
+  result.stdout.on("data", function (data) {
+    console.log(data.toString());
+  });
+  result.stderr.on("data", function (data) {
+    console.log(data.toString());
+  });
+
   return res.sendFile(
     path.join(__dirname + "../../../front/lectureEvaluation.html")
   );
