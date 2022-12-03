@@ -16,7 +16,7 @@
       <div class="classBox">
         <h1 class="title">강의평가</h1>
         <div class="formBox">
-          <!-- <form method="POST"> -->
+          <!-- <form method="POST" action="/lectureEvaluation"> -->
           <label for="classTitle" id="titleLabel"
             >1. 강의에 얼마나 집중 했나요?</label
           ><br />
@@ -35,12 +35,14 @@
             <div class="state2"><span id="percentage2"></span></div>
           </div>
 
-          <label for="department" id="departmentLabel">
+          <label for="q3" id="departmentLabel">
             3. 강의에서 말하고싶은 점은?</label
           ><br />
-          <input type="text" id="lectureInput" />
+          <input type="text" id="lectureInput" name="q3" />
 
-          <button id="registrationBtn">제출하기</button>
+          <button id="registrationBtn" onclick="prercentageFun()">
+            제출하기
+          </button>
           <!-- </form> -->
         </div>
       </div>
@@ -51,5 +53,7 @@
     integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
     crossorigin="anonymous"
   ></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/front/lectureEvaluation.js"></script>
 </html>

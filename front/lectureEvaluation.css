@@ -113,6 +113,11 @@ body {
 #lectureInput {
   width: 75%;
   height: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
   border: 1px solid black;
+  margin: 0 auto;
   border-radius: 2px;
 }

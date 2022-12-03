@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
 const Class = require("../models/Class");
+const Evaluation = require("../models/Evaluation");
 
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.home = async (req, res) => {
@@ -38,7 +39,7 @@ module.exports.getClassStudent = async (req, res) => {
   const { id } = req.user;
   try {
     const allClass = await Class.findAll();
-    console.log(allClass);
+
     const classList = await Class.findAll({
       raw: true,
       where: { classId: id },
@@ -53,7 +54,7 @@ module.exports.getClassProfessor = async (req, res) => {
   const { id } = req.user;
   try {
     const allClass = await Class.findAll();
-    console.log(allClass);
+
     const classList = await Class.findAll({
       raw: true,
       where: { classId: id },
@@ -205,3 +206,48 @@ module.exports.postClassProfessor = async (req, res) => {
     console.log(err);
   }
 };
+
+module.exports.postLectureEvaluation = async (req, res) => {
+  //className을 포함한 url처리하기
+  const { q1, q2, q3 } = req.body;
+  const { className } = req.params;
+  const { id } = req.user;
+
+  console.log(req.body);
+  console.log(req.params);
+  console.log(id);
+
+  try {
+    await Evaluation.create({
+      q1,
+      q2,
+      q3,
+      className,
+      userId: id,
+    });
+    return res.redirect("/sClass");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.postDataPage = async (req, res) => {
+  //데이터 가공 방식 설정하기
+  const { hiddenValue } = req.body;
+  const classList = await Evaluation.findAll({ where: { className } });
+};
+//--> 미들웨어로 설정
+// module.exports.isSubmit = async (req, res) => {
+//   const { hiddenValue } = req.body;
+//   const { id } = req.user;
+//   const exist = await Evaluation.findOne({
+//     where: {
+//       [Op.and]: [{ className: hiddenValue }, { userId: id }],
+//     },
+//   });
+//   if (exist) {
+//     console.log("수강신청을 이미 하셨습니다.");
+//   } else {
+//     console.log("수강신청 페이지로 이동");
+//   }
+// };

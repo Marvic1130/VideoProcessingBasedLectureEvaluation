@@ -15,13 +15,14 @@ const classDiv = document.querySelector(".classDiv"); // 수업 목록
 
 let uniqueCount = 1; // 새로운 버튼 id에 순차적으로 달 카운트
 let identifier = 0; // 식별자
+let classData;
 
 const searchInput = document.querySelector("#classSearch");
 const childBtn = document.createElement("button"); // 검색해서 수업이 있다면 생기는 버튼
 const br = document.createElement("br");
 
 async function searchSubmit() {
-  console.log("axios active");
+  console.log("axios get active");
 
   await axios
     // await를 쓰지 않으면 통신속도때문에 검색버튼을 한번 눌러도 버튼이 달리지 않음
@@ -29,8 +30,7 @@ async function searchSubmit() {
     .get("http://localhost:3000/class/find/?keyword")
     .then((res) => {
       const searchValue = searchInput.value;
-      // const className = res.data[0].className; // 데베 수업 이름
-      const classArr = res.data;
+      const classArr = res.data; // 데베 수업 데이터
       const classNameArr = classArr.map((element) => {
         // 배열객체에서 className만 추출하여 배열로 만듬
         return element.className;
@@ -39,6 +39,12 @@ async function searchSubmit() {
         // 추출한 className배열에서 inputValue와 일치하는 값만 걸러냄
         return searchValue == element;
       });
+
+      for (let i = 0; i < classArr.length; i++) {
+        if (classArr[i].className == realClassName) {
+          classData = classArr[i];
+        }
+      }
 
       if (realClassName[0] != undefined) {
         identifier = 1; // 식별자
@@ -61,8 +67,17 @@ async function searchSubmit() {
   }
 }
 
+childBtn.onclick = function childBtnEvent() {
+  console.log("axios post active");
+  console.log(classData);
+  axios
+    .post("http://localhost:3000/class/register", classData)
+    .then((res) => console.log(res))
+    .then((err) => console.log(err));
+};
+
 childBtn.addEventListener("click", () => {
-  console.log("i am live2");
+  // form, div, input 달아야함
   const lectureBtn = document.createElement("button"); // 수업 목록에 생길 버튼
   lectureBtn.id = "classBtn" + uniqueCount;
   lectureBtn.innerText = childBtn.innerText;
