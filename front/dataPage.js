@@ -2,7 +2,7 @@
 new Chart(document.getElementById("canvas"), {
   type: "line",
   data: {
-    labels: ["1", "2", "3", "4", "5", "6", "7"],
+    labels: ["0", "10", "20", "30", "40", "50", "60"],
     datasets: [
       {
         label: "수업 집중도",
@@ -16,6 +16,13 @@ new Chart(document.getElementById("canvas"), {
         data: [1, 3, 15, 10, 25, 30, 5],
         borderColor: "skyblue",
         fill: true,
+        lineTension: 0,
+      },
+      {
+        label: "사람 평균 집중도",
+        data: [20, 20, 20, 20, 20, 20, 20],
+        borderColor: "purple",
+        fill: false,
         lineTension: 0,
       },
     ],
@@ -42,7 +49,7 @@ new Chart(document.getElementById("canvas"), {
           display: true,
           scaleLabel: {
             display: true,
-            labelString: "hour",
+            labelString: "minutes",
           },
         },
       ],
