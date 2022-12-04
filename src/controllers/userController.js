@@ -72,15 +72,29 @@ module.exports.getLectureEvaluation = async (req, res) => {
   );
 };
 
-module.exports.getData = async (req, res) => {
-  try {
-    const item = await Concentration.find();
-  } catch (error) {}
-};
+module.exports.getData = async (req, res) => {};
 
 module.exports.getConcentration = async (req, res) => {};
 
 module.exports.getDataPage = async (req, res) => {
+  console.log("getData!");
+  const { className } = req.params;
+  try {
+    const data1 = await Concentration.findAll({
+      raw: true,
+      where: { className },
+    });
+    const data2 = await Evaluation.findAll({ raw: true, where: { className } });
+
+    eyes = Object.values(data1[0]);
+    eyes = eyes.slice(0, -2);
+    evaluate = Object.values(data2[0]);
+    evaluate = evaluate.slice(0, -3);
+
+    return res.json(eyes, evaluate);
+  } catch (error) {
+    console.log(error);
+  }
   return res.sendFile(path.join(__dirname + "../../../front/dataPage.html"));
 };
 
