@@ -48,6 +48,10 @@ module.exports = class User extends Sequelize.Model {
           type: Sequelize.INTEGER(60),
           allowNull: false,
         },
+        className: {
+          type: Sequelize.STRING(60),
+          allowNull: false,
+        },
       },
       {
         sequelize,

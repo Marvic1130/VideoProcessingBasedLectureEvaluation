@@ -29,8 +29,8 @@ const options = {
   host: "127.0.0.1",
   user: "root",
   port: 3306,
-  password: "9401",
-  database: "nodejs",
+  password: "0000",
+  database: "blink2",
 };
 
 const sessionStore = new MySQLStore(options);

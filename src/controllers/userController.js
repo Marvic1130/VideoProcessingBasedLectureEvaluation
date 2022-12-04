@@ -67,7 +67,6 @@ module.exports.getLectureEvaluation = async (req, res) => {
   result.stderr.on("data", function (data) {
     console.log(data.toString());
   });
-  console.log(a);
   return res.sendFile(
     path.join(__dirname + "../../../front/lectureEvaluation.html")
   );
