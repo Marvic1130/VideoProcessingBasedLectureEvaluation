@@ -151,6 +151,31 @@ if __name__ == '__main__':
     print("run time is " + (int(end_time-start_time)).__str__() + "s "
           + (int((end_time-start_time) % 1*1000)).__str__() + "ms")
 
+    print(out_params)
+    for i in range(out_params.__len__()):
+        if out_params[i] <= 2:
+            out_params[i] = 10
+        elif (out_params[i] > 2) and (out_params[i] <= 3):
+            out_params[i] = 9
+        elif (out_params[i] > 3) and (out_params[i] <= 4):
+            out_params[i] = 8
+        elif (out_params[i] > 4) and (out_params[i] <= 5):
+            out_params[i] = 7
+        elif (out_params[i] > 5) and (out_params[i] <= 6.5):
+            out_params[i] = 6
+        elif (out_params[i] > 6.5) and (out_params[i] <= 8):
+            out_params[i] = 5
+        elif (out_params[i] > 8) and (out_params[i] <= 9.5):
+            out_params[i] = 4
+        elif (out_params[i] > 9.5) and (out_params[i] <= 11):
+            out_params[i] = 3
+        elif (out_params[i] > 11) and (out_params[i] <= 13):
+            out_params[i] = 2
+        elif (out_params[i] > 13) and (out_params[i] <= 15):
+            out_params[i] = 1
+        elif out_params[i] > 15:
+            out_params[i] = 0
+
     print("!@#$%")
     print(out_params)
     rename_file('crop')
