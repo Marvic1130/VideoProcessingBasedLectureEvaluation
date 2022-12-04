@@ -28,8 +28,9 @@ module.exports.getSJoin = async (req, res) => {
   );
 };
 let a;
-const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
+// const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
 module.exports.getLectureEvaluation = async (req, res) => {
+  let b;
   const { className } = req.params;
   console.log("classname", className);
   const result = await spawn("python", [
@@ -40,9 +41,9 @@ module.exports.getLectureEvaluation = async (req, res) => {
     a = data.toString();
     console.log(data.toString());
     const stringData = data.toString();
-    const realData = stringData.substring(stringData.indexOf("%") + 1);
-    console.log(realData);
-    //const b = realData.split(", ");
+    // const realData = stringData.substring(stringData.indexOf("%") + 1);
+    // console.log(realData);
+    b = stringData.split(", ");
     //const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
   });
   try {
