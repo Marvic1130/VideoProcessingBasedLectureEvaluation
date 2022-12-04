@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "wodbs223",
-    "database": "database_backend",
+    "password": "0000",
+    "database": "blink2",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
