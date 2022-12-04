@@ -1,7 +1,5 @@
-const { default: axios } = require("axios");
-
 window.onload = async function () {
-  await axios.get("http://localhost:3000/getData").then((res) => {
+  await axios.get("http://localhost:3000/dataPage").then((res) => {
     console.log(res);
   });
 };
