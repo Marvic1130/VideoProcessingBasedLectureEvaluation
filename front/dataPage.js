@@ -1,3 +1,11 @@
+const { default: axios } = require("axios");
+
+window.onload = async function () {
+  await axios.get("http://localhost:3000/getData").then((res) => {
+    console.log(res);
+  });
+};
+
 // chart
 new Chart(document.getElementById("canvas"), {
   type: "line",
@@ -20,7 +28,7 @@ new Chart(document.getElementById("canvas"), {
       },
       {
         label: "사람 평균 집중도",
-        data: [20, 20, 20, 20, 20, 20, 20],
+        data: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
         borderColor: "purple",
         fill: false,
         lineTension: 0,
