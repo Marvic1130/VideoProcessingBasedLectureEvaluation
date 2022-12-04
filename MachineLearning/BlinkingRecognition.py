@@ -6,26 +6,27 @@ import cv2
 import numpy as np
 from keras.models import load_model
 
+CreateTrainingData = "./CreateTrainingData"
+datafile_path = CreateTrainingData + "/croppedData"
 
 def rename_file(dist_lable: str):
     count = 0
-    file_list = os.listdir("C:/Users/Kimjaeyoun\Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/croppedData")
+    file_list = os.listdir(datafile_path)
     for i in range(file_list.__len__()):
         if file_list[i].endswith(".jpg"):
 
-            src = "C:/Users/Kimjaeyoun\Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/croppedData/" + file_list[i]
-            dst = "C:/Users/Kimjaeyoun\Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/croppedData/" + dist_lable + count.__str__() + ".jpg"
+            src = datafile_path + "/" + file_list[i]
+            dst = datafile_path + "/" + dist_lable + count.__str__() + ".jpg"
             os.rename(src, dst)
-            print(src + " rename to " + dst)
             count += 1
 
 
 if __name__ == '__main__':
     rename_file('temp')
 
-    caffemodel_path = 'C:/Users/Kimjaeyoun\Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/models/res10_300x300_ssd_iter_140000.caffemodel'
-    prototxt_path= 'C:/Users/Kimjaeyoun\Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/models/deploy.prototxt'
-    model_path = 'C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/models/1018F2623/1018F2623.h5'
+    caffemodel_path = CreateTrainingData + '/models/res10_300x300_ssd_iter_140000.caffemodel'
+    prototxt_path = CreateTrainingData + '/models/deploy.prototxt'
+    model_path = './models/1018F2623/1018F2623.h5'
     net = cv2.dnn.readNet(model=caffemodel_path, config=prototxt_path)
 
 
@@ -40,6 +41,7 @@ if __name__ == '__main__':
 
     start_time = time.time()
     off_time = []
+    on_time = []
     prev_time = 0
     FPS = 20
 
@@ -92,9 +94,9 @@ if __name__ == '__main__':
                 on = modelpredict[0][0]
                 off = modelpredict[0][1]
 
-                file_list = os.listdir("C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/croppedData")
+                file_list = os.listdir(datafile_path)
 
-                cropped_data_path = "C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData/croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
+                cropped_data_path = "croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
                 height_dist = (y2 - y1) // 2
                 crop = frame[y1: y2 - height_dist, x1: x2]
                 try:
@@ -105,11 +107,11 @@ if __name__ == '__main__':
                 if on > off:
                     color = (0, 255, 0)
                     label = 'Eyes on %d%%' % (on * 100)
+                    on_time.append(time.time())
                 else:
                     color = (0, 0, 255)
                     label = 'Eyes off %d%%' % (off * 100)
                     off_time.append(time.time())
-
 
                 cv2.rectangle(frame, pt1=(x1, y1), pt2=(x2, y2), thickness=2, color=color, lineType=cv2.LINE_AA)
                 cv2.putText(frame, text=label, org=(x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.8,
@@ -122,5 +124,12 @@ if __name__ == '__main__':
                 break
 
     end_time = time.time()
+    # print("!@#$%", start_time)
+    for i in range(on_time.__len__()):
+        print("!@#$%", on_time[i])
+
+    for i in range(off_time.__len__()):
+        print("!@#$%", off_time[i])
+    # print("!@#$%", end_time)
 
     rename_file('crop')

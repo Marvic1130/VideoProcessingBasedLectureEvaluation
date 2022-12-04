@@ -253,6 +253,7 @@ module.exports.postDataPage = async (req, res) => {
   const { hiddenValue } = req.body;
   const classList = await Evaluation.findAll({ where: { className } });
 };
+
 //--> 미들웨어로 설정
 // module.exports.isSubmit = async (req, res) => {
 //   const { hiddenValue } = req.body;
