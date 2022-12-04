@@ -34,10 +34,9 @@ module.exports.getLectureEvaluation = async (req, res) => {
   ]);
 
   result.stdout.on("data", function (data) {
-    console.log("시작");
     const stringData = data.toString();
-    const realData = stringData.substring(stringData.indexOf("") + 1);
-    console.log(b);
+    const realData = stringData.substring(stringData.indexOf("%") + 1);
+    console.log(realData);
   });
   result.stderr.on("data", function (data) {
     console.log(data.toString());

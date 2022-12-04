@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 from keras.models import load_model
 
-CreateTrainingData = "./CreateTrainingData"
+CreateTrainingData = "C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData"
 datafile_path = CreateTrainingData + "/croppedData"
 
 def rename_file(dist_lable: str):
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     caffemodel_path = CreateTrainingData + '/models/res10_300x300_ssd_iter_140000.caffemodel'
     prototxt_path = CreateTrainingData + '/models/deploy.prototxt'
-    model_path = './models/1018F2623/1018F2623.h5'
+    model_path = 'C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/models/1018F2623/1018F2623.h5'
     net = cv2.dnn.readNet(model=caffemodel_path, config=prototxt_path)
 
 

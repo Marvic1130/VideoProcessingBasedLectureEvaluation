@@ -2,7 +2,7 @@
 new Chart(document.getElementById("canvas"), {
   type: "line",
   data: {
-    labels: ["0", "10", "20", "30", "40", "50", "60"],
+    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     datasets: [
       {
         label: "수업 집중도",
@@ -58,6 +58,7 @@ new Chart(document.getElementById("canvas"), {
           // y축
           display: true,
           ticks: {
+            max: 10,
             suggestedMin: 0,
           },
           scaleLabel: {
