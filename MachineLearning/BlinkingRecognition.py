@@ -9,6 +9,7 @@ from keras.models import load_model
 CreateTrainingData = "./CreateTrainingData"
 datafile_path = CreateTrainingData + "/croppedData"
 
+
 def rename_file(dist_lable: str):
     count = 0
     file_list = os.listdir(datafile_path)
@@ -29,8 +30,6 @@ if __name__ == '__main__':
     model_path = './models/1018F2623/1018F2623.h5'
     net = cv2.dnn.readNet(model=caffemodel_path, config=prototxt_path)
 
-
-
     model = load_model(model_path)
     if net.empty():
         print('Net is empty!')
@@ -45,7 +44,6 @@ if __name__ == '__main__':
     out_params = []
     prev_time = 0
     FPS = 20
-
 
     print('Program start at local time', time.ctime(start_time))
 
@@ -97,7 +95,7 @@ if __name__ == '__main__':
 
                 file_list = os.listdir(datafile_path)
 
-                cropped_data_path = "croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
+                cropped_data_path = datafile_path+"/temp" + random.randrange(0, 999999).__str__() + ".jpg"
                 height_dist = (y2 - y1) // 2
                 crop = frame[y1: y2 - height_dist, x1: x2]
                 try:
@@ -129,14 +127,13 @@ if __name__ == '__main__':
     end_time = time.time()
     # print("!@#$%", start_time)
 
-    print("!@#$%")
-    for i in range(on_time.__len__()):
-        print(on_time[i])
-
-    for i in range(off_time.__len__()):
-        print(off_time[i])
+    # for i in range(on_time.__len__()):
+    #     print(on_time[i])
+    #
+    # for i in range(off_time.__len__()):
+    #     print(off_time[i])
     # print("!@#$%", end_time)
-    for i in range(10):
+    for i in range(11):
         count = 0
         for j in range(on_time.__len__()):
             if on_time[0] < start_time+60*(i+1):
@@ -153,5 +150,7 @@ if __name__ == '__main__':
             break
     print("run time is " + (int(end_time-start_time)).__str__() + "s "
           + (int((end_time-start_time) % 1*1000)).__str__() + "ms")
+
+    print("!@#$%")
     print(out_params)
     rename_file('crop')
