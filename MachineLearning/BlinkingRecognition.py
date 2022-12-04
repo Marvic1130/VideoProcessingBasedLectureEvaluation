@@ -42,6 +42,7 @@ if __name__ == '__main__':
     start_time = time.time()
     off_time = []
     on_time = []
+    out_params = []
     prev_time = 0
     FPS = 20
 
@@ -122,14 +123,35 @@ if __name__ == '__main__':
             key = cv2.waitKey(1)
             if key == 27:
                 break
+            if time.time() > start_time+600:
+                break
 
     end_time = time.time()
     # print("!@#$%", start_time)
+
+    print("!@#$%")
     for i in range(on_time.__len__()):
-        print("!@#$%", on_time[i])
+        print(on_time[i])
 
     for i in range(off_time.__len__()):
-        print("!@#$%", off_time[i])
+        print(off_time[i])
     # print("!@#$%", end_time)
+    for i in range(10):
+        count = 0
+        for j in range(on_time.__len__()):
+            if on_time[0] < start_time+60*(i+1):
+                try:
+                    count += 0.05
+                except IndexError:
+                    count += end_time-on_time[0]
 
+                on_time.remove(on_time[0])
+            else:
+                break
+        out_params.append(count)
+        if on_time.__len__() == 0:
+            break
+    print("run time is " + (int(end_time-start_time)).__str__() + "s "
+          + (int((end_time-start_time) % 1*1000)).__str__() + "ms")
+    print(out_params)
     rename_file('crop')
