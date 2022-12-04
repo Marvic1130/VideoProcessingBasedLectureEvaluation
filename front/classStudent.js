@@ -104,8 +104,10 @@ childBtn.addEventListener("click", () => {
 //   lectureAtag.setAttribute(href, "");
 // }
 
-const result = require("child_process").spawn("python", ["filename.py"]);
+// const spawn = require("child_process").spawn;
 
-result.stdout.on("data", function (data) {
-  console.log(data.toString());
-});
+// const result = spawn("python", ["/MachineLearning/BlinkingRecognition.py"]);
+
+// result.stdout.on("data", function (data) {
+//   console.log(data.toString());
+// });
