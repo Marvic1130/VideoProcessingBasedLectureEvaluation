@@ -24,6 +24,8 @@ userRouter
 userRouter.route("/sJoin").post(user.postSJoin);
 userRouter.route("/pJoin").post(user.postPJoin);
 
+userRouter.get("/getData", user.getData);
+
 userRouter.route("/").get(user.getLogin).post(user.postLogin);
 
 // export default userRouter;

@@ -1,13 +1,13 @@
 const bcrypt = require("bcrypt");
 const path = require("path");
 const passport = require("passport");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
 const Class = require("../models/Class");
 const Evaluation = require("../models/Evaluation");
-
+const Concentration = require("../models/Concentration");
 // const spawn = require("await-spawn");
 const spawn = require("child_process").spawn;
 
@@ -27,23 +27,59 @@ module.exports.getSJoin = async (req, res) => {
     path.join(__dirname + "../../../front/studentSignup.html")
   );
 };
-
+let a;
+const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
 module.exports.getLectureEvaluation = async (req, res) => {
+  const { className } = req.params;
+  console.log("classname", className);
   const result = await spawn("python", [
     path.join(__dirname + "../../../MachineLearning/BlinkingRecognition.py"),
   ]);
 
   result.stdout.on("data", function (data) {
+    a = data.toString();
     console.log(data.toString());
+    const stringData = data.toString();
+    const realData = stringData.substring(stringData.indexOf("%") + 1);
+    console.log(realData);
+    //const b = realData.split(", ");
+    //const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
   });
+  try {
+    await Concentration.create({
+      0: b[0],
+      1: b[1],
+      2: b[2],
+      3: b[3],
+      4: b[4],
+      5: b[5],
+      6: b[6],
+      7: b[7],
+      8: b[8],
+      9: b[9],
+      10: b[10],
+      className,
+    });
+  } catch (err) {
+    //err 확인 코드
+    console.log(err);
+  }
   result.stderr.on("data", function (data) {
     console.log(data.toString());
   });
-
+  console.log(a);
   return res.sendFile(
     path.join(__dirname + "../../../front/lectureEvaluation.html")
   );
 };
+
+module.exports.getData = async (req, res) => {
+  try {
+    const item = await Concentration.find();
+  } catch (error) {}
+};
+
+module.exports.getConcentration = async (req, res) => {};
 
 module.exports.getDataPage = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/dataPage.html"));
