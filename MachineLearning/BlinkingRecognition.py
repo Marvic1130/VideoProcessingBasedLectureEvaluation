@@ -9,6 +9,7 @@ from keras.models import load_model
 CreateTrainingData = "C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/CreateTrainingData"
 datafile_path = CreateTrainingData + "/croppedData"
 
+
 def rename_file(dist_lable: str):
     count = 0
     file_list = os.listdir(datafile_path)
@@ -29,8 +30,6 @@ if __name__ == '__main__':
     model_path = 'C:/Users/Kimjaeyoun/Documents/VideoProcessingBasedLectureEvaluation/MachineLearning/models/1018F2623/1018F2623.h5'
     net = cv2.dnn.readNet(model=caffemodel_path, config=prototxt_path)
 
-
-
     model = load_model(model_path)
     if net.empty():
         print('Net is empty!')
@@ -42,9 +41,9 @@ if __name__ == '__main__':
     start_time = time.time()
     off_time = []
     on_time = []
+    out_params = []
     prev_time = 0
     FPS = 20
-
 
     print('Program start at local time', time.ctime(start_time))
 
@@ -96,7 +95,7 @@ if __name__ == '__main__':
 
                 file_list = os.listdir(datafile_path)
 
-                cropped_data_path = "croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
+                cropped_data_path = datafile_path+"/temp" + random.randrange(0, 999999).__str__() + ".jpg"
                 height_dist = (y2 - y1) // 2
                 crop = frame[y1: y2 - height_dist, x1: x2]
                 try:
@@ -122,14 +121,61 @@ if __name__ == '__main__':
             key = cv2.waitKey(1)
             if key == 27:
                 break
+            if time.time() > start_time+600:
+                break
 
     end_time = time.time()
     # print("!@#$%", start_time)
-    for i in range(on_time.__len__()):
-        print("!@#$%", on_time[i])
 
-    for i in range(off_time.__len__()):
-        print("!@#$%", off_time[i])
+    # for i in range(on_time.__len__()):
+    #     print(on_time[i])
+    #
+    # for i in range(off_time.__len__()):
+    #     print(off_time[i])
     # print("!@#$%", end_time)
+    for i in range(11):
+        count = 0
+        for j in range(on_time.__len__()):
+            if on_time[0] < start_time+60*(i+1):
+                try:
+                    count += 0.05
+                except IndexError:
+                    count += end_time-on_time[0]
 
+                on_time.remove(on_time[0])
+            else:
+                break
+        out_params.append(count)
+        if on_time.__len__() == 0:
+            break
+    print("run time is " + (int(end_time-start_time)).__str__() + "s "
+          + (int((end_time-start_time) % 1*1000)).__str__() + "ms")
+
+    print(out_params)
+    for i in range(out_params.__len__()):
+        if out_params[i] <= 2:
+            out_params[i] = 10
+        elif (out_params[i] > 2) and (out_params[i] <= 3):
+            out_params[i] = 9
+        elif (out_params[i] > 3) and (out_params[i] <= 4):
+            out_params[i] = 8
+        elif (out_params[i] > 4) and (out_params[i] <= 5):
+            out_params[i] = 7
+        elif (out_params[i] > 5) and (out_params[i] <= 6.5):
+            out_params[i] = 6
+        elif (out_params[i] > 6.5) and (out_params[i] <= 8):
+            out_params[i] = 5
+        elif (out_params[i] > 8) and (out_params[i] <= 9.5):
+            out_params[i] = 4
+        elif (out_params[i] > 9.5) and (out_params[i] <= 11):
+            out_params[i] = 3
+        elif (out_params[i] > 11) and (out_params[i] <= 13):
+            out_params[i] = 2
+        elif (out_params[i] > 13) and (out_params[i] <= 15):
+            out_params[i] = 1
+        elif out_params[i] > 15:
+            out_params[i] = 0
+
+    print("!@#$%")
+    print(out_params)
     rename_file('crop')
