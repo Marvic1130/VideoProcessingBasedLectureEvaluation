@@ -29,12 +29,16 @@ module.exports.getSJoin = async (req, res) => {
 };
 
 module.exports.getLectureEvaluation = async (req, res) => {
-  const result = await spawn("python", [
+  const result = spawn("python", [
     path.join(__dirname + "../../../MachineLearning/BlinkingRecognition.py"),
   ]);
 
   result.stdout.on("data", function (data) {
+    console.log("시작");
     console.log(data.toString());
+    const a = data.toString();
+    const b = a.replace("1/1 [==============================]", "");
+    console.log(b);
   });
   result.stderr.on("data", function (data) {
     console.log(data.toString());
