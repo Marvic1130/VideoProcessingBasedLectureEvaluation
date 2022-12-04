@@ -18,7 +18,6 @@ def rename_file(dist_lable: str):
             src = datafile_path + "/" + file_list[i]
             dst = datafile_path + "/" + dist_lable + count.__str__() + ".jpg"
             os.rename(src, dst)
-            print(src + " rename to " + dst)
             count += 1
 
 
@@ -42,6 +41,7 @@ if __name__ == '__main__':
 
     start_time = time.time()
     off_time = []
+    on_time = []
     prev_time = 0
     FPS = 20
 
@@ -107,6 +107,7 @@ if __name__ == '__main__':
                 if on > off:
                     color = (0, 255, 0)
                     label = 'Eyes on %d%%' % (on * 100)
+                    on_time.append(time.time())
                 else:
                     color = (0, 0, 255)
                     label = 'Eyes off %d%%' % (off * 100)
@@ -123,5 +124,12 @@ if __name__ == '__main__':
                 break
 
     end_time = time.time()
+    # print("!@#$%", start_time)
+    for i in range(on_time.__len__()):
+        print("!@#$%", on_time[i])
+
+    for i in range(off_time.__len__()):
+        print("!@#$%", off_time[i])
+    # print("!@#$%", end_time)
 
     rename_file('crop')
