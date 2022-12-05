@@ -42,6 +42,8 @@ if __name__ == '__main__':
     off_time = []
     on_time = []
     out_params = []
+    for i in range(10):
+        out_params.append(-1)
     prev_time = 0
     FPS = 20
 
@@ -145,7 +147,7 @@ if __name__ == '__main__':
                 on_time.remove(on_time[0])
             else:
                 break
-        out_params.append(count)
+        out_params[i] = count
         if on_time.__len__() == 0:
             break
     print("run time is " + (int(end_time-start_time)).__str__() + "s "
@@ -153,7 +155,7 @@ if __name__ == '__main__':
 
     print(out_params)
     for i in range(out_params.__len__()):
-        if out_params[i] <= 2:
+        if (out_params[i] >= 0) and (out_params[i] <= 2):
             out_params[i] = 10
         elif (out_params[i] > 2) and (out_params[i] <= 3):
             out_params[i] = 9
@@ -176,6 +178,10 @@ if __name__ == '__main__':
         elif out_params[i] > 15:
             out_params[i] = 0
 
-    print("!@#$%")
-    print(out_params)
+    print("%")
+    for i in range(out_params.__len__()):
+        if i != out_params.__len__()-1:
+            print(out_params[i], end=", ")
+        else:
+            print(out_params[i])
     rename_file('crop')
