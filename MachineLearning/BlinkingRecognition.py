@@ -138,13 +138,13 @@ if __name__ == '__main__':
     for i in range(11):
         count = 0
         for j in range(on_time.__len__()):
-            if on_time[0] < start_time+60*(i+1):
+            if off_time[0] < start_time+60*(i+1):
                 try:
                     count += 0.05
                 except IndexError:
-                    count += end_time-on_time[0]
+                    count += end_time-off_time[0]
 
-                on_time.remove(on_time[0])
+                off_time.remove(off_time[0])
             else:
                 break
         out_params[i] = count
