@@ -28,8 +28,9 @@ module.exports.getSJoin = async (req, res) => {
   );
 };
 let a;
-const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
+// const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
 module.exports.getLectureEvaluation = async (req, res) => {
+  let b;
   const { className } = req.params;
   console.log("classname", className);
   const result = await spawn("python", [
@@ -40,9 +41,9 @@ module.exports.getLectureEvaluation = async (req, res) => {
     a = data.toString();
     console.log(data.toString());
     const stringData = data.toString();
-    const realData = stringData.substring(stringData.indexOf("%") + 1);
-    console.log(realData);
-    //const b = realData.split(", ");
+    // const realData = stringData.substring(stringData.indexOf("%") + 1);
+    // console.log(realData);
+    b = stringData.split(", ");
     //const b = ["1", "5", "7", "6", "4", "4", "5", "4", "5", "4", "10"];
   });
   try {
@@ -89,13 +90,23 @@ module.exports.getDataPage = async (req, res) => {
     eyes = Object.values(data1[0]);
     eyes = eyes.slice(0, -2);
     evaluate = Object.values(data2[0]);
-    evaluate = evaluate.slice(0, -3);
+    evaluate = evaluate.slice(1, 3);
+    console.log(evaluate);
 
-    return res.json(eyes, evaluate);
+    const dataSet = [eyes, evaluate];
+    var options = {
+      headers: {
+        name: dataSet,
+      },
+    };
+    // res.json(dataSet);
+    return res.sendFile(
+      path.join(__dirname + "../../../front/dataPage.html"),
+      options
+    );
   } catch (error) {
     console.log(error);
   }
-  return res.sendFile(path.join(__dirname + "../../../front/dataPage.html"));
 };
 
 module.exports.getClassStudent = async (req, res) => {

@@ -11,8 +11,9 @@ $(document).ready(function () {
     clickPercentage = x / $(".progress1").width();
     //.state의 너비는 (.progress의 너비에서 변수 clickPercentage를 곱한 값);
     $(".state1").width($(".progress1").width() * clickPercentage);
-    var percentage = Math.floor(clickPercentage * 100);
+    var percentage = Math.floor(clickPercentage * 10 + 1);
     percent1 = percentage;
+    console.log(percent1);
     //Math.floor() 소수점 버림, 정수를 반환하는 함수
     $("#percentage1").text(percentage);
   });
@@ -28,7 +29,7 @@ $(document).ready(function () {
     clickPercentage = x / $(".progress2").width();
     //.state의 너비는 (.progress의 너비에서 변수 clickPercentage를 곱한 값);
     $(".state2").width($(".progress2").width() * clickPercentage);
-    var percentage = Math.floor(clickPercentage * 100);
+    var percentage = Math.floor(clickPercentage * 10 + 1);
     percent2 = percentage;
     //Math.floor() 소수점 버림, 정수를 반환하는 함수
     $("#percentage2").text(percentage);
