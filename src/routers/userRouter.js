@@ -10,7 +10,10 @@ userRouter
   .route("/lectureEvaluation/:className")
   .get(user.getLectureEvaluation)
   .post(user.postLectureEvaluation);
-userRouter.route("/dataPage").get(user.getDataPage).post(user.postDataPage);
+userRouter
+  .route("/dataPage/:className")
+  .get(user.getDataPage)
+  .post(user.postDataPage);
 
 userRouter
   .route("/sClass")
